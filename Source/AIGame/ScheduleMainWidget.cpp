@@ -41,6 +41,8 @@ void UScheduleMainWidget::HandleAttributeChanged(EPlayerAttribute AttributeType,
 		case EPlayerAttribute::Empathy:
 			StatBar_Empathy->OnValueUpdate(NewValue);
 			break;
+		default:
+			break;
 	}
 }
 

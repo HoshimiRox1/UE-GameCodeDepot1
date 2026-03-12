@@ -10,6 +10,9 @@
 /**
  * 
  */
+
+class UProgressBar;
+
 UCLASS()
 class AIGAME_API UStatBarWidget : public UUserWidget
 {
@@ -24,6 +27,6 @@ public:
 	void OnValueUpdate(float NewValue, float MaxValue = 100.f);
 	
 	// 绑定UMG中的进度条组件
-	UPROPERTY(meta = (BindWidget))
-	class UProgressBar* ProgressBar;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
+	UProgressBar* StatBar;
 };

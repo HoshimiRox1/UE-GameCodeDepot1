@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+class UStatBarWidget;
+
 UCLASS()
 class AIGAME_API UScheduleMainWidget : public UUserWidget
 {
@@ -23,12 +26,12 @@ protected:
 	void HandleAttributeChanged(EPlayerAttribute AttributeType, float NewValue);
 	
 	// 绑定三个子属性条
-	UPROPERTY(meta = (BindWidget))
-	class UStatBarWidget* StatBar_Decision;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
+	UStatBarWidget* StatBar_Decision;
 	
-	UPROPERTY(meta = (BindWidget))
-	class UStatBarWidget* StatBar_Social;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
+	UStatBarWidget* StatBar_Social;
 	
-	UPROPERTY(meta = (BindWidget))
-	class UStatBarWidget* StatBar_Empathy;
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
+	UStatBarWidget* StatBar_Empathy;
 };

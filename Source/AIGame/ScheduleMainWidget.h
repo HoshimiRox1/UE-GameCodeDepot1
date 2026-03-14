@@ -22,7 +22,7 @@ protected:
 	// UI的BeginPlay()
 	virtual void NativeConstruct() override;
 	
-	// Subsystem广播后的触发函数
+	// Subsystem广播后的回调函数
 	UFUNCTION()
 	void HandleAttributeChanged(EPlayerAttribute AttributeType, float NewValue);
 	

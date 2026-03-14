@@ -2,6 +2,7 @@
 
 
 #include "GameDataSubsystem.h"
+#include "ScheduleTaskDataAsset.h"
 
 void UGameDataSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -41,4 +42,33 @@ void UGameDataSubsystem::ResetDailyStats()
 float UGameDataSubsystem::GetAttributeValue(EPlayerAttribute Attribute) const
 {
 	return PlayerStats.Contains(Attribute) ? PlayerStats[Attribute] : 0.0f;
+}
+
+void UGameDataSubsystem::SelectTask(UScheduleTaskDataAsset* NewTask)
+{
+}
+
+void UGameDataSubsystem::ComfirmSelectedTask()
+{
+}
+
+void UGameDataSubsystem::ExecuteToday()
+{
+	if (not SelectedTask) return;
+	
+	// 修改属性
+	for (const auto& Modifier : SelectedTask->AttributeModifiers)
+	{
+		ModifyAttribute(Modifier.Key, Modifier.Value);
+	}
+	
+	// 清空选中任务
+	SelectedTask = nullptr;
+	
+	// 当前日子++
+	CurrentDate++;
+	
+	// 广播事件——新的一天，刷新ScheduleMain
+	// TODO:但其实这里有BUG，就是ModifyAttribute()本来就会广播导致UI刷新，这里广播其实没太大用处，后面重整逻辑
+	OnNewDayStarted.Broadcast();
 }

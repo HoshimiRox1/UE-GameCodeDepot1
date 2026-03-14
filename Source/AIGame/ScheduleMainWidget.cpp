@@ -4,6 +4,7 @@
 #include "ScheduleMainWidget.h"
 #include "StatBarWidget.h"
 #include "GameDataSubsystem.h"
+#include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -26,6 +27,26 @@ void UScheduleMainWidget::NativeConstruct()
 			StatBar_Empathy->OnValueUpdate(DataSubsystem->GetAttributeValue(EPlayerAttribute::Empathy));
 		}
 	}
+	
+	// 『确认按钮』的逻辑
+	if (ConfirmButton)
+	{
+		// 添加其点击事件到广播
+		ConfirmButton->OnClicked.AddDynamic(this, &UScheduleMainWidget::OnConfirmButtonClicked);
+		
+		// 未选中任务时，禁用『确认按钮』
+		ConfirmButton->SetIsEnabled(false);
+	}
+	
+	// 『出发按钮』的逻辑
+	if (DepartButton)
+	{
+		// 添加其点击事件到广播
+		DepartButton->OnClicked.AddDynamic(this, &UScheduleMainWidget::OnDepartButtonClicked);
+		
+		// 未选中确认任务时，隐藏『出发按钮』
+		DepartButton->SetVisibility(ESlateVisibility::Hidden);
+	}
 }
 
 void UScheduleMainWidget::HandleAttributeChanged(EPlayerAttribute AttributeType, float NewValue)
@@ -44,6 +65,14 @@ void UScheduleMainWidget::HandleAttributeChanged(EPlayerAttribute AttributeType,
 		default:
 			break;
 	}
+}
+
+void UScheduleMainWidget::OnConfirmButtonClicked()
+{
+}
+
+void UScheduleMainWidget::OnDepartButtonClicked()
+{
 }
 
 

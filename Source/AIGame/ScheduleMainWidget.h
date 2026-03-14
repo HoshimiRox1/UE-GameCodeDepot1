@@ -10,6 +10,7 @@
  * 
  */
 
+class UButton;
 class UStatBarWidget;
 
 UCLASS()
@@ -34,4 +35,22 @@ protected:
 	
 	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
 	UStatBarWidget* StatBar_Empathy;
+	
+	// 以下是『确认按钮』的逻辑
+	// 绑定确认按钮
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly)
+	UButton* ConfirmButton;
+	
+	// 确认按钮的点击事件回调函数——锁定选中任务，并使其他任务变灰禁用
+	UFUNCTION()
+	void OnConfirmButtonClicked();
+	
+	// 『出发按钮』（默认应当处于隐藏或禁用状态）
+	// 绑定
+	UPROPERTY(meta = (BindWidget), BlueprintReadOnly)
+	UButton* DepartButton;
+	
+	// 点击事件回调函数——执行当日结算函数
+	UFUNCTION()
+	void OnDepartButtonClicked();
 };

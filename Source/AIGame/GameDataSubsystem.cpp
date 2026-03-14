@@ -46,10 +46,12 @@ float UGameDataSubsystem::GetAttributeValue(EPlayerAttribute Attribute) const
 
 void UGameDataSubsystem::SelectTask(UScheduleTaskDataAsset* NewTask)
 {
+	// TODO: 任务事件状态切换为『选中』
 }
 
 void UGameDataSubsystem::ComfirmSelectedTask()
 {
+	// TODO: 锁定选中任务，其他任务变灰禁用
 }
 
 void UGameDataSubsystem::ExecuteToday()

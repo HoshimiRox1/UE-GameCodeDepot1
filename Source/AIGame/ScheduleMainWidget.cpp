@@ -69,10 +69,14 @@ void UScheduleMainWidget::HandleAttributeChanged(EPlayerAttribute AttributeType,
 
 void UScheduleMainWidget::OnConfirmButtonClicked()
 {
+	// TODO:将选中任务锁定，并使其他任务变灰禁用
+	
 }
 
 void UScheduleMainWidget::OnDepartButtonClicked()
 {
+	// TODO:调用ExecuteToday结束今天
+	
 }
 
 

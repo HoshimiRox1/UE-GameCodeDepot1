@@ -32,12 +32,9 @@ void UTaskButtonWidget::OnTaskButtonClicked()
 	UGameDataSubsystem* Subsystem = GetGameInstance()->GetSubsystem<UGameDataSubsystem>();
 	if (Subsystem)
 	{
-		// 遍历任务数据所有结果，并调用子系统接口函数修改属性
-		for (const auto& Modifier : TaskDataAsset->AttributeModifiers)
-		{
-			Subsystem->ModifyAttribute(Modifier.Key, Modifier.Value);
-		}
+		// 点击——任务进入选中态
+		Subsystem->SelectTask(TaskDataAsset);
 		
-		// TODO: 播放音效之类的
+		// TODO: 播放音效、选中动画等
 	}
 }

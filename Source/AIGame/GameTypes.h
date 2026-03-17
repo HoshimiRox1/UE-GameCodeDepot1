@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameTypes.generated.h"
 /**
  * 
  */
@@ -63,7 +64,7 @@ struct FTaskReward
 
 // ── 随机事件选项结构体 ─────────────────────────────────
 USTRUCT(BlueprintType)
-struct FRamdomEventOption
+struct FRandomEventOption
 {
 	GENERATED_BODY()
 	
@@ -103,7 +104,7 @@ struct FGameDate
 
 //	── 游戏整体状态（搁置字段保留接口，逻辑不实现） ─────
 USTRUCT(BlueprintType)
-struct FGameState
+struct FGameWholeState
 {
 	GENERATED_BODY()
 	

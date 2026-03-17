@@ -9,65 +9,88 @@
 
 class UScheduleTaskDataAsset;
 /**
- 游戏单例
+ 游戏数据处理子系统
  */
 
-// 动态多播：属性变动->UI刷新
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAttributeChanged, EPlayerAttribute, Attribute, float, Value);
-// 动态多播：今日结束->界面刷新
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNewDayStarted);
+// ── 属性变化委托--UI绑定刷新 ─────────────────────────
+/**
+ *属性类型及其新值
+ *资金变动
+ *思考点变动
+ *默契值变动
+ *日期改动
+ */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAttributeChanged, EAttributeType, AttributeType, float, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCashChanged, int32, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FThoughtPointsChanged, int32, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAnnieRapportChanged, int32, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDateChanged, FGameDate, NewDate);
+
 
 UCLASS()
 class AIGAME_API UGameDataSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	// 监听变量——属性值变动
-	UPROPERTY(BlueprintAssignable, Category = "事件")
+	// ── 委托（UI 订阅） ───────────────────────────
+	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChanged OnAttributeChanged;
 	
-	// 监听变量——今日结束
-	UPROPERTY(BlueprintAssignable, Category = "事件")
-	FOnNewDayStarted OnNewDayStarted;
+	UPROPERTY(BlueprintAssignable)
+	FCashChanged OnCashChanged;
 	
-	// 初始化数据
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	UPROPERTY(BlueprintAssignable)
+	FThoughtPointsChanged OnThoughtPointsChanged;
 	
-	// 修改属性的通用接口
+	UPROPERTY(BlueprintAssignable)
+	FAnnieRapportChanged OnAnnieRapportChanged;
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnDateChanged OnDateChanged;
+	
+	// ── 属性Getter接口 ───────────────────────────
 	UFUNCTION(BlueprintCallable, Category = "游戏属性")
-	void ModifyAttribute(EPlayerAttribute Type, float Amount);
+	int32 GetAttributeValue(EAttributeType Type) const;
 	
-	// 每日刷新逻辑
 	UFUNCTION(BlueprintCallable, Category = "游戏属性")
-	void ResetDailyStats();
+	int32 GetCash() const { return GameState.Cash; }
 	
-	// 属性Getter函数
-	UFUNCTION(BlueprintPure, Category = "游戏属性")
-	float GetAttributeValue(EPlayerAttribute Attribute) const;
+	UFUNCTION(BlueprintCallable, Category = "游戏属性")
+	int32 GetThoughtPoints() const { return GameState.ThoughtPoints; }
+	
+	UFUNCTION(BlueprintCallable, Category = "游戏属性")
+	int32 GetAnnieRapport() const { return GameState.AnnieRapport; }
+	
+	UFUNCTION(BlueprintCallable, Category = "游戏属性")
+	FGameWholeState GetGameState() const { return GameState; }
+	
+	// ── 属性修改接口（由 ScheduleSubsystem 调用） ─────
+	// 根据任务奖励应用修改
+	UFUNCTION(BlueprintCallable, Category = "游戏属性")
+	void ApplyTaskReward(const FTaskReward& Reward);
+	
+	// TODO 单属性修改（万一要用呢）
+	
+	// ── 日期接口（由 ScheduleSubsystem 调用） ─────────
+	// 获取游戏日期
+	UFUNCTION(BlueprintCallable, Category = "游戏日期")
+	FGameDate GetGameDate() const { return GameState.CurrentDate;}
+	
+	// 推进日期并广播
+	UFUNCTION(BlueprintCallable, Category = "游戏日期")
+	void AdvanceDate();
+	
+	// TODO 存读档
+	// void SaveGame();
+	// void LoadGame();
 
-	// 当前选中事件的缓存
-	UPROPERTY(BlueprintReadOnly)
-	TObjectPtr<UScheduleTaskDataAsset> SelectedTask;
-	
-	// 点击——事件状态转换函数
-	UFUNCTION(BlueprintCallable)
-	void SelectTask(UScheduleTaskDataAsset* NewTask);
-	
-	// 确认按钮——事件锁定函数
-	UFUNCTION(BlueprintCallable)
-	void ComfirmSelectedTask();
-	
-	// 出发——当日的结算函数
-	UFUNCTION(BlueprintCallable)
-	void ExecuteToday();
+protected:
+	// 子系统初始化
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
 private:
 	// 数据池
-	// 角色属性
+	// 游戏整体属性
 	UPROPERTY()
-	TMap<EPlayerAttribute, float> PlayerStats;
-	
-	// 当前日期——简化版
-	UPROPERTY()
-	int CurrentDate;
+	FGameWholeState GameState;
 };

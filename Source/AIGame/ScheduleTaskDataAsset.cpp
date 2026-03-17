@@ -3,3 +3,7 @@
 
 #include "ScheduleTaskDataAsset.h"
 
+FPrimaryAssetId UScheduleTaskDataAsset::GetPrimaryAssetId() const
+{
+	return Super::GetPrimaryAssetId();
+}

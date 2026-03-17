@@ -10,8 +10,6 @@
     <list default="true" id="2c93981a-9677-48d4-a222-5abb206e80bc" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/WBP_ScheduleMainWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/WBP_ScheduleMainWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AIGame/GameDataSubsystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/GameDataSubsystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AIGame/ScheduleMainWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/ScheduleMainWidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +139,8 @@
       <workItem from="1773487494690" duration="322000" />
       <workItem from="1773488516717" duration="343000" />
       <workItem from="1773488919662" duration="1646000" />
-      <workItem from="1773492804740" duration="1258000" />
+      <workItem from="1773492804740" duration="1318000" />
+      <workItem from="1773495828782" duration="406000" />
     </task>
     <task id="LOCAL-00001" summary="修改任务按钮的点击逻辑">
       <option name="closed" value="true" />
@@ -175,7 +174,31 @@
       <option name="project" value="LOCAL" />
       <updated>1773492949213</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="加了几个TODO">
+      <option name="closed" value="true" />
+      <created>1773494088709</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773494088709</updated>
+    </task>
+    <task id="LOCAL-00006" summary="配置文件变动">
+      <option name="closed" value="true" />
+      <created>1773494101494</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773494101494</updated>
+    </task>
+    <task id="LOCAL-00007" summary="蓝图变动">
+      <option name="closed" value="true" />
+      <created>1773494111588</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1773494111588</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +212,10 @@
     <MESSAGE value="给日程界面添加新按钮控件以及相关函数" />
     <MESSAGE value="游戏功能：点击任务卡片按钮，它进入一个“选中态”，然后点击一个确认按钮，它进入一个“锁定态”，最后点击“出发”按钮，今日结束，第二天我们才能观察到属性值的实际改变" />
     <MESSAGE value="改了个备注" />
-    <option name="LAST_COMMIT_MESSAGE" value="改了个备注" />
+    <MESSAGE value="加了几个TODO" />
+    <MESSAGE value="配置文件变动" />
+    <MESSAGE value="蓝图变动" />
+    <option name="LAST_COMMIT_MESSAGE" value="蓝图变动" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

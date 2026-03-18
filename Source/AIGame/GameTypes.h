@@ -74,7 +74,7 @@ struct FRandomEventOption
 	
 	// 奖励
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "随机事件")
-	FTaskReward Reward;;
+	FTaskReward Reward;
 };
 
 // ── 游戏日期结构体 ─────────────────────────────────────

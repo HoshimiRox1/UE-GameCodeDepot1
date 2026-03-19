@@ -9,12 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2c93981a-9677-48d4-a222-5abb206e80bc" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIGame.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/AIGame.uproject" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Data/DA_Task001.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/DA_Task001.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AIGame/GameDataSubsystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/GameDataSubsystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AIGame/GameTypes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/GameTypes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_AttributeBar.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_ScheduleMain.uasset" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +27,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Plugins/Developer/TextureFormatOodle/Source/Private/Jobify/example_jobify.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Editor/AddContentDialog/Private/ContentSourceProviders/FeaturePack/FeaturePackContentSource.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/AIModule/Classes/Navigation/NavLinkProxy.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Experimental/Misc/ExecutionResource.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Math/Edge.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Misc/Exec.h" root0="FORCE_HIGHLIGHTING" />
@@ -36,8 +36,12 @@
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Experimental/Iris/Core/Private/Iris/ReplicationSystem/ReplicationWriter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/GeometryCore/Public/CompGeom/ExactPredicates.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameDataSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameDataSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameTypes.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameTypes.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/ScheduleSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/ScheduleSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/ScheduleSubsystem.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -63,7 +67,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;UnrealLinkOptionsId&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.toDoOptions&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -156,7 +160,9 @@
       <workItem from="1773495828782" duration="406000" />
       <workItem from="1773724706291" duration="11859000" />
       <workItem from="1773797113106" duration="6928000" />
-      <workItem from="1773820126667" duration="4977000" />
+      <workItem from="1773820126667" duration="5494000" />
+      <workItem from="1773842462204" duration="13000" />
+      <workItem from="1773913847586" duration="2308000" />
     </task>
     <task id="LOCAL-00001" summary="修改任务按钮的点击逻辑">
       <option name="closed" value="true" />
@@ -318,7 +324,47 @@
       <option name="project" value="LOCAL" />
       <updated>1773824261881</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="编写基本的日期流转逻辑">
+      <option name="closed" value="true" />
+      <created>1773825407054</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1773825407054</updated>
+    </task>
+    <task id="LOCAL-00022" summary="实现数据子系统的相关接口">
+      <option name="closed" value="true" />
+      <created>1773825423073</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1773825423073</updated>
+    </task>
+    <task id="LOCAL-00023" summary="声明日程子系统的有关接口和委托">
+      <option name="closed" value="true" />
+      <created>1773825439389</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1773825439389</updated>
+    </task>
+    <task id="LOCAL-00024" summary="实现日程子系统的接口">
+      <option name="closed" value="true" />
+      <created>1773825451649</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1773825451649</updated>
+    </task>
+    <task id="LOCAL-00025" summary="配置文件变动">
+      <option name="closed" value="true" />
+      <created>1773825460876</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1773825460876</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,6 +372,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="修改任务按钮的点击逻辑" />
@@ -333,7 +390,6 @@
     <MESSAGE value="游戏功能：点击任务卡片按钮，它进入一个“选中态”，然后点击一个确认按钮，它进入一个“锁定态”，最后点击“出发”按钮，今日结束，第二天我们才能观察到属性值的实际改变" />
     <MESSAGE value="改了个备注" />
     <MESSAGE value="加了几个TODO" />
-    <MESSAGE value="配置文件变动" />
     <MESSAGE value="蓝图变动" />
     <MESSAGE value="重构移除" />
     <MESSAGE value="迁移" />
@@ -346,7 +402,12 @@
     <MESSAGE value="删了没用的" />
     <MESSAGE value="资产文件" />
     <MESSAGE value="删了个分号" />
-    <option name="LAST_COMMIT_MESSAGE" value="删了个分号" />
+    <MESSAGE value="编写基本的日期流转逻辑" />
+    <MESSAGE value="实现数据子系统的相关接口" />
+    <MESSAGE value="声明日程子系统的有关接口和委托" />
+    <MESSAGE value="实现日程子系统的接口" />
+    <MESSAGE value="配置文件变动" />
+    <option name="LAST_COMMIT_MESSAGE" value="配置文件变动" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -27,7 +27,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAnnieRapportChanged, int32, NewValu
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDateChanged, FGameDate, NewDate);
 
 
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class AIGAME_API UGameDataSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()

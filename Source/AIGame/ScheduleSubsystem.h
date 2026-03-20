@@ -43,7 +43,7 @@ enum class ETaskExecutionState : uint8
 };
 
 //  ── 日程子系统 ──────────────────────────────────
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class AIGAME_API UScheduleSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
@@ -141,7 +141,7 @@ protected:
 	
 private:
 	// 最大槽位数
-	static constexpr int32 MaxSlots = 5;
+	static constexpr int32 MaxSlots = 4;
 	
 	// 任务池 (按分类)
 	UPROPERTY()

@@ -11,7 +11,7 @@ class UScheduleTaskDataAsset;
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class AIGAME_API UDataPoolConfig : public UPrimaryDataAsset
 {
 	GENERATED_BODY()

@@ -39,7 +39,7 @@ int32 UScheduleSubsystem::AddTaskToSlot(UScheduleTaskDataAsset* Task)
 	if (IsTaskInSlot(Task))	return -1;
 	
 	// 添加任务到槽位，并广播
-	for (int32 i = 0; i < MaxSlots; ++i)
+	for (int32 i = 0; i < Slots.Num(); ++i)
 	{
 		if (Slots[i] == nullptr)
 		{
@@ -167,6 +167,8 @@ void UScheduleSubsystem::ConfirmDayEnd()
 void UScheduleSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	
+	Slots.Init(nullptr, MaxSlots);
 }
 
 void UScheduleSubsystem::ExecuteNextSlot()

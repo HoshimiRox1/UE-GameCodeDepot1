@@ -8,11 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c93981a-9677-48d4-a222-5abb206e80bc" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AIGame.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIGame.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/AIGame.uproject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Data/DA_Task001.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/DA_Task001.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_AttributeBar.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_ScheduleMain.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Data/DA_Task001.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/BP_RaisingGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/BP_RaisingGameMode.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task001.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task001.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task002.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task002.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task003.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task003.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task006.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task006.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task007.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/TaskData/DA_Task007.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_ScheduleBoard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_ScheduleBoard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_Slot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_Slot.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_TaskButton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_TaskButton.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_TaskClassButton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Raising/Widgets/WBP_TaskClassButton.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,20 +38,30 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Plugins/Developer/TextureFormatOodle/Source/Private/Jobify/example_jobify.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Editor/AddContentDialog/Private/ContentSourceProviders/FeaturePack/FeaturePackContentSource.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Editor/Kismet/Public/FindInBlueprintManager.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Editor/Persona/Private/SMorphTargetViewer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/AIModule/Classes/Navigation/NavLinkProxy.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Private/Windows/WindowsPlatformTLS.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Experimental/Misc/ExecutionResource.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Math/Edge.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Misc/Exec.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Core/Public/Windows/WindowsPlatformTLS.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Engine/Private/ReplayHelper.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Experimental/Iris/Core/Private/Iris/ReplicationSystem/ReplicationWriter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/GeometryCore/Public/CompGeom/ExactPredicates.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameDataSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameDataSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameTypes.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/GameTypes.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/ScheduleSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/ScheduleSubsystem.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/UnrealProjects/AIGame/Source/AIGame/ScheduleSubsystem.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/PakFile/Private/FilePackageStore.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Renderer/Private/VirtualShadowMaps/VirtualShadowMapArray.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UnrealEngine/UE_5.6/Engine/Source/Runtime/Slate/Private/Widgets/Layout/SSplitter.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/DataPoolConfig.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/DataPoolConfig.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/GameDataSubsystem.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/GameDataSubsystem.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/GameTypes.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/GameTypes.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/ScheduleSubsystem.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/ScheduleTaskDataAsset.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/AIGame/ScheduleTaskDataAsset.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -53,24 +73,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Uproject.AIGame.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.toDoOptions&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Uproject.AIGame.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="AIGame" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -146,6 +166,9 @@
       </method>
     </configuration>
   </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\34434\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
       <changelist id="2c93981a-9677-48d4-a222-5abb206e80bc" name="更改" comment="" />
@@ -162,7 +185,14 @@
       <workItem from="1773797113106" duration="6928000" />
       <workItem from="1773820126667" duration="5494000" />
       <workItem from="1773842462204" duration="13000" />
-      <workItem from="1773913847586" duration="2308000" />
+      <workItem from="1773913847586" duration="5731000" />
+      <workItem from="1773969411118" duration="1517000" />
+      <workItem from="1773972378762" duration="158000" />
+      <workItem from="1773972698923" duration="923000" />
+      <workItem from="1774090549836" duration="1039000" />
+      <workItem from="1774697513450" duration="70000" />
+      <workItem from="1774698782616" duration="31000" />
+      <workItem from="1774703026339" duration="2026000" />
     </task>
     <task id="LOCAL-00001" summary="修改任务按钮的点击逻辑">
       <option name="closed" value="true" />
@@ -364,7 +394,55 @@
       <option name="project" value="LOCAL" />
       <updated>1773825460876</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="资产修改">
+      <option name="closed" value="true" />
+      <created>1773922425750</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1773922425750</updated>
+    </task>
+    <task id="LOCAL-00027" summary="配置、资产变动">
+      <option name="closed" value="true" />
+      <created>1773922538495</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1773922538495</updated>
+    </task>
+    <task id="LOCAL-00028" summary="任务池配置文件">
+      <option name="closed" value="true" />
+      <created>1773969670599</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1773969670599</updated>
+    </task>
+    <task id="LOCAL-00029" summary="资产变动">
+      <option name="closed" value="true" />
+      <created>1773972731040</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1773972731040</updated>
+    </task>
+    <task id="LOCAL-00030" summary="可蓝图化">
+      <option name="closed" value="true" />
+      <created>1773972754827</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1773972754827</updated>
+    </task>
+    <task id="LOCAL-00031" summary="可蓝图化">
+      <option name="closed" value="true" />
+      <created>1773972766033</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1773972766033</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,9 +462,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/Source" />
+    </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="修改任务按钮的点击逻辑" />
-    <MESSAGE value="给日程界面添加新按钮控件以及相关函数" />
     <MESSAGE value="游戏功能：点击任务卡片按钮，它进入一个“选中态”，然后点击一个确认按钮，它进入一个“锁定态”，最后点击“出发”按钮，今日结束，第二天我们才能观察到属性值的实际改变" />
     <MESSAGE value="改了个备注" />
     <MESSAGE value="加了几个TODO" />
@@ -407,7 +486,12 @@
     <MESSAGE value="声明日程子系统的有关接口和委托" />
     <MESSAGE value="实现日程子系统的接口" />
     <MESSAGE value="配置文件变动" />
-    <option name="LAST_COMMIT_MESSAGE" value="配置文件变动" />
+    <MESSAGE value="资产修改" />
+    <MESSAGE value="配置、资产变动" />
+    <MESSAGE value="任务池配置文件" />
+    <MESSAGE value="资产变动" />
+    <MESSAGE value="可蓝图化" />
+    <option name="LAST_COMMIT_MESSAGE" value="可蓝图化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -426,5 +510,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

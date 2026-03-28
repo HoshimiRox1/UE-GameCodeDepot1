@@ -1,0 +1,4 @@
+P4PORT=1666
+P4USER=hoshimirox1
+P4CLIENT=hoshimirox1_Rokishi_GameDevelop
+P4IGNORE=.p4ignore.txt;.gitignore

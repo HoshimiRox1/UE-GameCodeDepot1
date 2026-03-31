@@ -62,6 +62,7 @@ void AAdventurePawn::Move(const FInputActionValue& Value)
 	AddMovementInput(Right, Direction.Y);
 	
 	//---X轴限制移动--------------
+	// TODO 目前做法是暴力钳制，后面再优化做法
 	AddMovementInput(Forward, Direction.X);
 	
 	FVector CurrentLocation = GetActorLocation();

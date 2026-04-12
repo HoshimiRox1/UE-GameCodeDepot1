@@ -7,7 +7,22 @@
 #include "GameFramework/Pawn.h"
 #include "AdventurePawn.generated.h"
 
-UCLASS()
+UENUM(BlueprintType)
+enum class EMoveState : uint8
+{
+	IDLE	UMETA(DisplayName = "待机"),
+	WALK	UMETA(DisplayName = "行走"),
+	RUN		UMETA(DisplayName = "奔跑")
+};
+
+UENUM(BlueprintType)
+enum class EMoveDirection : uint8
+{
+	RIGHT	UMETA(DisplayName = "右边"),
+	LEFT	UMETA(DisplayName = "左边")
+};
+
+UCLASS(Blueprintable)
 class AIGAME_API AAdventurePawn : public APawn
 {
 	GENERATED_BODY()
@@ -39,8 +54,8 @@ public:
 	
 	// ---2.5D移动x轴限制移动变量--------------
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "移动")
-	float MinX = 0.f;
+	float MinY = 0.f;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "移动")
-	float MaxX = 2000.f;
+	float MaxY = 2000.f;
 };

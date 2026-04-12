@@ -68,6 +68,9 @@ void AAdventurePawn::Move(const FInputActionValue& Value)
 	FVector CurrentLocation = GetActorLocation();
 	CurrentLocation.Y = FMath::Clamp(CurrentLocation.Y, MinY, MaxY);
 	
+	// TODO 这行要删的，临时用
+	CurrentLocation.X = FMath::Clamp(CurrentLocation.X,	-560, 1960);
+	
 	SetActorLocation(CurrentLocation);
 }
 

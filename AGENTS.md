@@ -47,8 +47,8 @@
 ## BlueprintShowcase - 蓝图连接示意流程图
 
 这个文件是用于给用户展示如何连接蓝图各个节点的，你可以直接以一个流程图的形式描绘各个蓝图节点以及它们之间的连线
-至于如何绘制，详见 visualize Skill 是如何说明的
+至于如何绘制蓝图，详见 visualize Skill 是如何说明的
 
 为了避免因为蓝图过多导致的文件杂乱，BlueprintShowcase中只有一个BlueprintShowcase.html文件
-顶部一个『导航栏』包含许多跳转方块，每个方块内部文本显示是那个蓝图类的。
-每个蓝图内
+如何编排页面、蓝图和节点，目录下已经有了一个BlueprintShowcase_example.html供你参考
+你只需要在此基础上修改内容并作为BlueprintShowcase.html就行。

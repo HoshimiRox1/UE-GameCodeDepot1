@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blueprint Showcase - AIGame_HR</title>
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --panel:#ffffff;
+      --ink:#1f2937;
+      --muted:#667085;
+      --line:#9aa7b5;
+      --blue:#4f8cc9;
+      --blue-soft:#edf6ff;
+      --green:#3f9f7f;
+      --green-soft:#ecfdf5;
+      --amber:#c58a2b;
+      --amber-soft:#fff7e6;
+      --rose:#c76b7b;
+      --rose-soft:#fff1f3;
+      --purple:#7c6ac8;
+      --purple-soft:#f4f0ff;
+      --shadow:0 14px 36px rgba(31,41,55,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Microsoft YaHei",sans-serif;
+      background:linear-gradient(180deg,#fbfcff 0%,var(--bg) 100%);
+      color:var(--ink);
+    }
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:blur(14px);
+      background:rgba(247,248,251,.86);
+      border-bottom:1px solid rgba(154,167,181,.28);
+    }
+    .topbar{
+      max-width:1180px;
+      margin:0 auto;
+      padding:16px 22px 14px;
+    }
+    .brand{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-end;
+      margin-bottom:12px;
+    }
+    h1{font-size:24px;line-height:1.2;margin:0;letter-spacing:.02em}
+    .subtitle{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .badge{
+      white-space:nowrap;
+      border:1px solid rgba(79,140,201,.25);
+      background:var(--blue-soft);
+      color:#2d6699;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:12px;
+    }
+    nav{display:flex;gap:10px;overflow:auto;padding-bottom:2px}
+    nav a{
+      flex:0 0 auto;
+      text-decoration:none;
+      color:var(--ink);
+      background:var(--panel);
+      border:1px solid rgba(154,167,181,.35);
+      border-radius:13px;
+      padding:9px 12px;
+      font-size:13px;
+      box-shadow:0 4px 14px rgba(31,41,55,.04);
+    }
+    nav a:hover{border-color:rgba(79,140,201,.55);background:#f8fbff}
+    main{max-width:1180px;margin:0 auto;padding:26px 22px 60px}
+    .intro{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      margin-bottom:22px;
+    }
+    .card,.bp-section{
+      background:var(--panel);
+      border:1px solid rgba(154,167,181,.28);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .card{padding:20px}
+    .card h2,.bp-section h2{margin:0 0 10px;font-size:19px}
+    .card p{margin:0;color:var(--muted);line-height:1.75;font-size:14px}
+    .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+    .legend span{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+    .dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid currentColor;background:transparent}
+    .dot.event{color:var(--blue)}.dot.check{color:var(--amber)}.dot.call{color:var(--green)}.dot.var{color:var(--purple)}
+    .bp-section{padding:22px;margin-top:22px;scroll-margin-top:132px}
+    .section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:16px}
+    .section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.7;max-width:760px}
+    .class-tag{border-radius:999px;padding:7px 10px;font-size:12px;background:#f2f4f7;color:#475467;white-space:nowrap}
+    .flow-wrap{overflow:auto;border:1px solid rgba(154,167,181,.24);border-radius:16px;background:#fcfdff;padding:12px}
+    svg{min-width:980px;width:100%;height:auto;display:block}
+    .node{cursor:pointer;transition:.18s ease}
+    .node rect{stroke-width:2;filter:drop-shadow(0 5px 10px rgba(31,41,55,.06))}
+    .node:hover rect{stroke:#344054;transform:translateY(-1px)}
+    .node.active rect{stroke:#111827;stroke-width:3}
+    .node-label{font-size:15px;font-weight:700;fill:#1f2937;pointer-events:none}
+    .node-sub{font-size:12px;fill:#667085;pointer-events:none}
+    .wire{stroke:var(--line);stroke-width:2.2;fill:none;marker-end:url(#arrow)}
+    .wire.true{stroke:var(--green)}.wire.false{stroke:var(--rose)}.wire.data{stroke:var(--purple);stroke-dasharray:5 5}
+    .wire-label{font-size:12px;fill:#667085}
+    .below{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 330px;
+      gap:16px;
+      margin-top:16px;
+    }
+    .steps,.inspector{border:1px solid rgba(154,167,181,.24);border-radius:16px;padding:16px;background:#fff}
+    .steps h3,.inspector h3{margin:0 0 10px;font-size:15px}
+    ol{margin:0;padding-left:20px;color:#344054;font-size:14px;line-height:1.8}
+    .inspector p{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.65}
+    .node-list{display:grid;gap:8px}
+    .node-pill{
+      border:1px solid rgba(154,167,181,.28);
+      border-radius:12px;
+      padding:10px 11px;
+      background:#fafbfc;
+      cursor:pointer;
+    }
+    .node-pill strong{display:block;font-size:13px;margin-bottom:3px}
+    .node-pill span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+    .note{
+      margin-top:14px;
+      border-left:4px solid var(--blue);
+      background:var(--blue-soft);
+      padding:11px 13px;
+      border-radius:12px;
+      color:#365f87;
+      font-size:13px;
+      line-height:1.65;
+    }
+    code{background:#f2f4f7;border-radius:6px;padding:1px 5px;color:#344054}
+    @media (max-width:860px){
+      .intro,.below{grid-template-columns:1fr}
+      .brand,.section-head{display:block}
+      .badge,.class-tag{display:inline-block;margin-top:10px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div>
+          <h1>Blueprint Showcase</h1>
+          <p class="subtitle">给初学蓝图时看的「节点怎么连」展示页：先看类，再看执行线，再看每个节点在干嘛。</p>
+        </div>
+        <div class="badge">Prototype · 单文件 HTML · 2026-05-11</div>
+      </div>
+      <nav aria-label="蓝图类导航">
+        <a href="#bp-player">BP_PlayerCharacter</a>
+        <a href="#bpi-interactable">BPI_Interactable</a>
+        <a href="#bp-door">BP_TestDoor</a>
+        <a href="#bp-puzzle">BP_TestPuzzle</a>
+        <a href="#wbp-prompt">WBP_InteractionPrompt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="card">
+        <h2>这个页面要解决什么？</h2>
+        <p>你不一定认识每个蓝图节点，所以这里不只画连线，还会把节点拆成「触发事件 / 判断节点 / 调用节点 / 变量数据」四种类型。以后每做一个蓝图类，就在同一个 HTML 里新增一个区块。</p>
+      </div>
+      <div class="card">
+        <h2>图例</h2>
+        <div class="legend">
+          <span><i class="dot event"></i>事件入口 / 输入触发</span>
+          <span><i class="dot check"></i>判断 / 分支</span>
+          <span><i class="dot call"></i>函数或接口调用</span>
+          <span><i class="dot var"></i>变量 / 数据引用</span>
+        </div>
+        <p class="note">小提示：点击图里的节点或右侧节点卡片，可以在说明区看到它的作用。欸嘿，这样就不用每次都盯着蓝图节点名发呆啦。</p>
+      </div>
+    </section>
+
+    <section class="bp-section" id="bp-player" data-blueprint="BP_PlayerCharacter">
+      <div class="section-head">
+        <div>
+          <h2>BP_PlayerCharacter：发现可交互物并调用接口</h2>
+          <p>角色蓝图只负责「找目标」和「按 E 调用」。它不关心目标是门、拼图还是箱子，真正反应交给目标 Actor 自己。</p>
+        </div>
+        <span class="class-tag">Character Blueprint</span>
+      </div>
+      <div class="flow-wrap">
+        <svg viewBox="0 0 1160 460" role="img" aria-label="BP_PlayerCharacter 蓝图连接示意">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/></marker>
+          </defs>
+          <path class="wire" d="M170 98 C220 98 225 98 270 98"/><path class="wire" d="M450 98 C500 98 505 98 550 98"/><path class="wire" d="M730 98 C780 98 785 98 830 98"/>
+          <path class="wire true" d="M1010 98 C1055 98 1080 130 1080 174 C1080 218 1028 230 990 230"/><path class="wire false" d="M920 150 C920 185 875 205 835 230"/>
+          <path class="wire" d="M170 332 C220 332 225 332 270 332"/><path class="wire" d="M450 332 C500 332 505 332 550 332"/><path class="wire" d="M730 332 C780 332 785 332 830 332"/>
+          <path class="wire data" d="M640 270 C640 228 790 218 850 180"/>
+          <text class="wire-label" x="1044" y="122">True</text><text class="wire-label" x="890" y="195">False</text><text class="wire-label" x="690" y="238">CurrentInteractable</text>
+
+          <g class="node" data-title="Event Tick" data-desc="每帧执行一次。这里用来持续检测角色前方有没有可交互物。" transform="translate(30 60)"><rect width="140" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="30">Event Tick</text><text class="node-sub" x="18" y="54">持续扫描目标</text></g>
+          <g class="node" data-title="LineTraceByChannel" data-desc="从摄像机或眼睛位置向前打一条射线，看看命中了哪个 Actor。" transform="translate(270 60)"><rect width="180" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="30">LineTraceByChannel</text><text class="node-sub" x="18" y="54">向前检测命中物</text></g>
+          <g class="node" data-title="Break Hit Result" data-desc="把射线命中的结果拆开，取出 Hit Actor。" transform="translate(550 60)"><rect width="180" height="76" rx="14" fill="#f4f0ff" stroke="#7c6ac8"/><text class="node-label" x="18" y="30">Break Hit Result</text><text class="node-sub" x="18" y="54">取出 Hit Actor</text></g>
+          <g class="node" data-title="Does Implement Interface" data-desc="判断命中的 Actor 有没有实现 BPI_Interactable。True 才能当作交互目标。" transform="translate(830 60)"><rect width="180" height="90" rx="14" fill="#fff7e6" stroke="#c58a2b"/><text class="node-label" x="18" y="31">Does Implement</text><text class="node-label" x="18" y="51">Interface</text><text class="node-sub" x="18" y="74">是否可交互</text></g>
+          <g class="node" data-title="Set CurrentInteractable" data-desc="如果目标实现了接口，就把它保存成当前可交互对象，后面按 E 会用到。" transform="translate(810 230)"><rect width="180" height="76" rx="14" fill="#f4f0ff" stroke="#7c6ac8"/><text class="node-label" x="18" y="30">Set Current</text><text class="node-sub" x="18" y="54">保存当前目标</text></g>
+          <g class="node" data-title="Clear / Hide Prompt" data-desc="如果没有命中可交互物，就清空当前目标并隐藏交互提示。" transform="translate(570 230)"><rect width="180" height="76" rx="14" fill="#fff1f3" stroke="#c76b7b"/><text class="node-label" x="18" y="30">Clear Target</text><text class="node-sub" x="18" y="54">隐藏提示 UI</text></g>
+          <g class="node" data-title="IA_Interact Triggered" data-desc="Enhanced Input 的交互输入事件。玩家按下 E 键时触发。" transform="translate(30 294)"><rect width="140" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="30">IA_Interact</text><text class="node-sub" x="18" y="54">按 E 触发</text></g>
+          <g class="node" data-title="IsValid" data-desc="检查 CurrentInteractable 是否有效，避免没有目标时调用接口报错。" transform="translate(270 294)"><rect width="180" height="76" rx="14" fill="#fff7e6" stroke="#c58a2b"/><text class="node-label" x="18" y="30">IsValid</text><text class="node-sub" x="18" y="54">目标是否存在</text></g>
+          <g class="node" data-title="OnInteract Message" data-desc="接口消息调用。Target 是 CurrentInteractable，Interactor 传 Self。不要 Cast 到具体门或拼图。" transform="translate(550 294)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="30">OnInteract</text><text class="node-sub" x="18" y="54">Message 调用接口</text></g>
+          <g class="node" data-title="Target Actor Reacts" data-desc="被交互的 Actor 自己决定反应：门打开、拼图弹 UI、箱子移动。" transform="translate(830 294)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="30">Target Reacts</text><text class="node-sub" x="18" y="54">物体自己响应</text></g>
+        </svg>
+      </div>
+      <div class="below">
+        <div class="steps"><h3>连接顺序</h3><ol><li><code>Event Tick</code> 进入射线检测，得到前方命中的 Actor。</li><li>用 <code>Does Implement Interface</code> 判断它是否实现 <code>BPI_Interactable</code>。</li><li>True：保存到 <code>CurrentInteractable</code>，并显示提示；False：清空目标。</li><li><code>IA_Interact Triggered</code> 后先 <code>IsValid</code>，再调用 <code>OnInteract Message</code>。</li></ol></div>
+        <aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击任意节点查看说明。默认建议先从 Event Tick 顺着白色执行线看。</p><div class="node-list js-node-list"></div></aside>
+      </div>
+    </section>
+
+    <section class="bp-section" id="bpi-interactable" data-blueprint="BPI_Interactable">
+      <div class="section-head"><div><h2>BPI_Interactable：交互契约</h2><p>接口不是具体逻辑，它只是规定「谁能被交互，就必须提供哪些入口」。</p></div><span class="class-tag">Blueprint Interface</span></div>
+      <div class="flow-wrap"><svg viewBox="0 0 1040 260" role="img" aria-label="BPI_Interactable 接口示意"><defs><marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/></marker></defs><path class="wire" style="marker-end:url(#arrow2)" d="M210 130 L345 130"/><path class="wire" style="marker-end:url(#arrow2)" d="M525 130 L660 78"/><path class="wire" style="marker-end:url(#arrow2)" d="M525 130 L660 130"/><path class="wire" style="marker-end:url(#arrow2)" d="M525 130 L660 182"/><g class="node" data-title="Caller" data-desc="通常是玩家角色。它只知道目标实现了接口，不需要知道目标的具体类。" transform="translate(50 92)"><rect width="160" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="31">Player</text><text class="node-sub" x="18" y="55">调用接口消息</text></g><g class="node" data-title="BPI_Interactable" data-desc="统一入口：OnInteract 负责执行交互，GetInteractPrompt 负责显示提示文字。" transform="translate(345 82)"><rect width="180" height="96" rx="14" fill="#fff7e6" stroke="#c58a2b"/><text class="node-label" x="18" y="31">BPI_Interactable</text><text class="node-sub" x="18" y="57">OnInteract</text><text class="node-sub" x="18" y="76">GetInteractPrompt</text></g><g class="node" data-title="Door" data-desc="实现接口后，OnInteract 可以播放开门动画或旋转门。" transform="translate(660 40)"><rect width="180" height="64" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="28">BP_TestDoor</text><text class="node-sub" x="18" y="49">开门</text></g><g class="node" data-title="Puzzle" data-desc="实现接口后，OnInteract 可以 Create Widget 并 Add to Viewport。" transform="translate(660 118)"><rect width="180" height="64" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="28">BP_TestPuzzle</text><text class="node-sub" x="18" y="49">打开拼图 UI</text></g><g class="node" data-title="Box" data-desc="以后推箱子也可以实现同一个接口，不需要改角色蓝图。" transform="translate(660 196)"><rect width="180" height="64" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="28">BP_PushBox</text><text class="node-sub" x="18" y="49">推动</text></g></svg></div>
+      <div class="below"><div class="steps"><h3>接口内建议函数</h3><ol><li><code>OnInteract(Interactor)</code>：玩家按 E 时被调用。</li><li><code>GetInteractPrompt()</code>：返回 UI 上显示的提示文字。</li><li><code>CanInteract(Interactor)</code>：可选，用来处理上锁、距离不够等条件。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
+    </section>
+
+    <section class="bp-section" id="bp-door" data-blueprint="BP_TestDoor">
+      <div class="section-head"><div><h2>BP_TestDoor：被调用后打开门</h2><p>门蓝图只处理自己的反应。角色调用 <code>OnInteract Message</code> 后，这里决定是否播放开门逻辑。</p></div><span class="class-tag">Actor Blueprint</span></div>
+      <div class="flow-wrap"><svg viewBox="0 0 1040 310" role="img" aria-label="BP_TestDoor 蓝图连接示意"><defs><marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/></marker></defs><path class="wire" style="marker-end:url(#arrow3)" d="M210 96 L330 96"/><path class="wire true" style="marker-end:url(#arrow3)" d="M510 96 L640 96"/><path class="wire" style="marker-end:url(#arrow3)" d="M820 96 L910 96"/><path class="wire data" style="marker-end:url(#arrow3)" d="M730 150 L730 202"/><g class="node" data-title="Event OnInteract" data-desc="这是接口事件。玩家按 E 调用门时，会进入这里。" transform="translate(50 58)"><rect width="160" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="31">Event</text><text class="node-sub" x="18" y="55">OnInteract</text></g><g class="node" data-title="Branch: bOpened?" data-desc="判断门是否已经打开。没打开才继续，避免重复播放。" transform="translate(330 58)"><rect width="180" height="76" rx="14" fill="#fff7e6" stroke="#c58a2b"/><text class="node-label" x="18" y="31">Branch</text><text class="node-sub" x="18" y="55">bOpened == false</text></g><g class="node" data-title="Play Timeline" data-desc="Timeline 输出一个 0 到 1 的 Alpha，用来驱动门旋转。" transform="translate(640 58)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="31">Play Timeline</text><text class="node-sub" x="18" y="55">开门动画</text></g><g class="node" data-title="Set Relative Rotation" data-desc="根据 Timeline 的 Alpha 插值到目标角度，然后设置门板旋转。" transform="translate(910 58)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="31">Set Rotation</text><text class="node-sub" x="18" y="55">旋转门板</text></g><g class="node" data-title="Set bOpened" data-desc="动画开始或结束时把 bOpened 设为 true，标记门已打开。" transform="translate(640 202)"><rect width="180" height="76" rx="14" fill="#f4f0ff" stroke="#7c6ac8"/><text class="node-label" x="18" y="31">Set bOpened</text><text class="node-sub" x="18" y="55">记录状态</text></g></svg></div>
+      <div class="below"><div class="steps"><h3>连接顺序</h3><ol><li><code>Event OnInteract</code> 进入门自己的逻辑。</li><li>判断 <code>bOpened</code>，没打开才继续。</li><li>播放 <code>Timeline</code>，用 Alpha 驱动旋转。</li><li>设置 <code>bOpened = true</code>，避免重复触发。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
+    </section>
+
+    <section class="bp-section" id="bp-puzzle" data-blueprint="BP_TestPuzzle">
+      <div class="section-head"><div><h2>BP_TestPuzzle：被调用后打开拼图 UI</h2><p>拼图 Actor 的交互目标不是移动自己，而是创建一个 Widget 并把输入模式切到 UI。</p></div><span class="class-tag">Actor Blueprint</span></div>
+      <div class="flow-wrap"><svg viewBox="0 0 1040 300" role="img" aria-label="BP_TestPuzzle 蓝图连接示意"><defs><marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/></marker></defs><path class="wire" style="marker-end:url(#arrow4)" d="M210 96 L330 96"/><path class="wire" style="marker-end:url(#arrow4)" d="M510 96 L630 96"/><path class="wire" style="marker-end:url(#arrow4)" d="M810 96 L910 96"/><path class="wire data" style="marker-end:url(#arrow4)" d="M720 134 L720 196"/><g class="node" data-title="Event OnInteract" data-desc="角色调用拼图 Actor 的接口事件后进入这里。" transform="translate(50 58)"><rect width="160" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="31">Event</text><text class="node-sub" x="18" y="55">OnInteract</text></g><g class="node" data-title="Create Widget" data-desc="创建 WBP_PuzzlePanel。Owning Player 通常接 Get Player Controller。" transform="translate(330 58)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="31">Create Widget</text><text class="node-sub" x="18" y="55">WBP_PuzzlePanel</text></g><g class="node" data-title="Add to Viewport" data-desc="把创建出来的拼图界面显示到屏幕上。" transform="translate(630 58)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="31">Add to Viewport</text><text class="node-sub" x="18" y="55">显示 UI</text></g><g class="node" data-title="Set Input Mode" data-desc="让鼠标和键盘输入进入 UI。初期可用 Game and UI，关闭面板时切回 Game Only。" transform="translate(910 58)"><rect width="180" height="76" rx="14" fill="#fff7e6" stroke="#c58a2b"/><text class="node-label" x="18" y="31">Set Input Mode</text><text class="node-sub" x="18" y="55">Game and UI</text></g><g class="node" data-title="PuzzleWidgetRef" data-desc="可选：保存 Widget 引用，后续关闭、刷新或避免重复创建时会用到。" transform="translate(630 196)"><rect width="180" height="76" rx="14" fill="#f4f0ff" stroke="#7c6ac8"/><text class="node-label" x="18" y="31">PuzzleWidgetRef</text><text class="node-sub" x="18" y="55">保存 UI 引用</text></g></svg></div>
+      <div class="below"><div class="steps"><h3>连接顺序</h3><ol><li><code>Event OnInteract</code> 进入拼图 Actor。</li><li><code>Create Widget</code> 创建拼图界面。</li><li><code>Add to Viewport</code> 显示界面。</li><li><code>Set Input Mode Game and UI</code>，让玩家能操作 UI。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
+    </section>
+
+    <section class="bp-section" id="wbp-prompt" data-blueprint="WBP_InteractionPrompt">
+      <div class="section-head"><div><h2>WBP_InteractionPrompt：显示当前可交互提示</h2><p>这个 Widget 不决定交互逻辑，只负责把当前目标返回的提示文字显示出来。</p></div><span class="class-tag">Widget Blueprint</span></div>
+      <div class="flow-wrap"><svg viewBox="0 0 1040 250" role="img" aria-label="WBP_InteractionPrompt 蓝图连接示意"><defs><marker id="arrow5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/></marker></defs><path class="wire" style="marker-end:url(#arrow5)" d="M210 96 L330 96"/><path class="wire" style="marker-end:url(#arrow5)" d="M510 96 L630 96"/><path class="wire" style="marker-end:url(#arrow5)" d="M810 96 L910 96"/><g class="node" data-title="Show Prompt" data-desc="角色检测到可交互物时调用显示逻辑。" transform="translate(50 58)"><rect width="160" height="76" rx="14" fill="#edf6ff" stroke="#4f8cc9"/><text class="node-label" x="18" y="31">Show Prompt</text><text class="node-sub" x="18" y="55">角色侧触发</text></g><g class="node" data-title="GetInteractPrompt Message" data-desc="向当前目标询问提示文本，比如「按 E 开门」。" transform="translate(330 58)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="31">Get Prompt</text><text class="node-sub" x="18" y="55">接口消息</text></g><g class="node" data-title="Set Text" data-desc="把接口返回的 Text 设置到提示控件上。" transform="translate(630 58)"><rect width="180" height="76" rx="14" fill="#ecfdf5" stroke="#3f9f7f"/><text class="node-label" x="18" y="31">Set Text</text><text class="node-sub" x="18" y="55">更新显示文案</text></g><g class="node" data-title="Set Visibility" data-desc="有目标就 Visible，没有目标就 Hidden 或 Collapsed。" transform="translate(910 58)"><rect width="180" height="76" rx="14" fill="#fff7e6" stroke="#c58a2b"/><text class="node-label" x="18" y="31">Set Visibility</text><text class="node-sub" x="18" y="55">显示 / 隐藏</text></g></svg></div>
+      <div class="below"><div class="steps"><h3>连接顺序</h3><ol><li>角色检测到目标后，让 Widget 显示。</li><li>从目标调用 <code>GetInteractPrompt Message</code>。</li><li>把返回 Text 接到 <code>SetText</code>。</li><li>目标消失时隐藏 Widget。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.bp-section').forEach(section => {
+      const desc = section.querySelector('.js-desc');
+      const list = section.querySelector('.js-node-list');
+      const nodes = Array.from(section.querySelectorAll('.node'));
+      nodes.forEach((node, index) => {
+        const title = node.dataset.title || 'Node';
+        const detail = node.dataset.desc || '';
+        const pill = document.createElement('div');
+        pill.className = 'node-pill';
+        pill.innerHTML = `<strong>${index + 1}. ${title}</strong><span>${detail}</span>`;
+        const activate = () => {
+          nodes.forEach(n => n.classList.remove('active'));
+          node.classList.add('active');
+          desc.innerHTML = `<strong>${title}</strong><br>${detail}`;
+        };
+        node.addEventListener('click', activate);
+        pill.addEventListener('click', activate);
+        list.appendChild(pill);
+      });
+    });
+  </script>
+</body>
+</html>

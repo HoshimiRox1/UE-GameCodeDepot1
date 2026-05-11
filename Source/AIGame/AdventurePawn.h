@@ -15,13 +15,6 @@ enum class EMoveState : uint8
 	RUN		UMETA(DisplayName = "奔跑")
 };
 
-UENUM(BlueprintType)
-enum class EMoveDirection : uint8
-{
-	RIGHT	UMETA(DisplayName = "右边"),
-	LEFT	UMETA(DisplayName = "左边")
-};
-
 UCLASS(Blueprintable)
 class AIGAME_API AAdventurePawn : public APawn
 {

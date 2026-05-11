@@ -7,6 +7,14 @@
 #include "InputMappingContext.h"
 #include "MainCharacter.generated.h"
 
+UENUM(BlueprintType)
+enum class EMoveDirection : uint8
+{
+	RIGHT	UMETA(DisplayName = "右边"),
+	LEFT	UMETA(DisplayName = "左边")
+};
+
+
 /**
  * 
  */

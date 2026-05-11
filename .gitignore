@@ -1,32 +1,83 @@
-# 先忽略整个项目
-/*
+# Unreal Engine project Git ignore
+# Keep source/config/content/project files; ignore generated local/build artifacts.
 
-# 保留 Git 自己需要的文件
-!/.gitignore
-!/README.md
+# --- IDE / editor local files ---
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
 
-# 保留代码目录
-!/Source/
-!/Source/**
+# --- Visual Studio / build outputs ---
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.opensdf
+*.sdf
+*.ipch
+*.VC.db
+*.VC.VC.opendb
 
-# 如果你有插件代码，也保留它
-!/Plugins/
-!/Plugins/**/Source/
-!/Plugins/**/Source/**
+# --- Unreal generated folders ---
+Binaries/
+Build/Receipts/
+DerivedDataCache/
+Intermediate/
+Saved/
+Script/
 
-# 不要跟踪这些生成物
-**/Binaries/
-**/Intermediate/
-**/DerivedDataCache/
-**/.vs/
-**/.vscode/
-**/.idea/
-**/*.sln
-**/*.vcxproj*
-**/*.tmp
-**/*.log
-**/*.obj
-**/*.pdb
-**/.DS_Store
-**/Thumbs.db
-**/desktop.ini
+# Generated folders inside plugins
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+Plugins/**/DerivedDataCache/
+Plugins/**/Saved/
+
+# JetBrains RiderLink / UnrealLink local generated plugin, usually recreated by Rider.
+# If this plugin is intentionally shared by the project, remove the next line.
+Plugins/Developer/RiderLink/
+
+# --- Build/debug binaries ---
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
+*.app
+*.dSYM/
+
+# --- Logs / temp files ---
+*.log
+*.tmp
+*.temp
+*.cache
+*.bak
+*.swp
+*.swo
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Codex/local migration backups ---
+.gitignore.codex-backup-*
+
+# --- Perforce local config leftovers ---
+p4config.txt
+.p4ignore
+.p4config
+
+# --- Keep useful root project metadata ---
+!.gitignore
+!.gitattributes
+!.vsconfig
+!*.uproject
+!*.uplugin
+!README.md
+

@@ -6,44 +6,16 @@
   <title>交互系统蓝图连接示意 - AIGame_HR</title>
   <style>
     :root{
-      --bg:#f6f7f3;
-      --panel:#fffefa;
-      --ink:#20231f;
-      --muted:#687064;
-      --line:#98a18e;
-      --event:#477da8;
-      --event-soft:#eaf3fb;
-      --func:#7967aa;
-      --func-soft:#f0edfb;
-      --check:#b47a2b;
-      --check-soft:#fff4df;
-      --call:#3f8d70;
-      --call-soft:#e9f6ef;
-      --danger:#b85f67;
-      --danger-soft:#fff0f1;
-      --var:#506b4e;
-      --var-soft:#edf4e9;
-      --shadow:0 18px 44px rgba(32,35,31,.08);
-      --radius:18px;
+      --bg:#f6f7f3;--panel:#fffefa;--ink:#20231f;--muted:#687064;--line:#98a18e;
+      --event:#477da8;--event-soft:#eaf3fb;--func:#7967aa;--func-soft:#f0edfb;
+      --check:#b47a2b;--check-soft:#fff4df;--call:#3f8d70;--call-soft:#e9f6ef;
+      --danger:#b85f67;--danger-soft:#fff0f1;--var:#506b4e;--var-soft:#edf4e9;
+      --shadow:0 18px 44px rgba(32,35,31,.08);--radius:18px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 10% 0%, rgba(180,122,43,.10), transparent 32%),
-        linear-gradient(180deg,#fbfaf4 0%,var(--bg) 100%);
-    }
-    header{
-      position:sticky;
-      top:0;
-      z-index:10;
-      background:rgba(246,247,243,.88);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(152,161,142,.32);
-    }
+    body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 0%, rgba(180,122,43,.10), transparent 32%),linear-gradient(180deg,#fbfaf4 0%,var(--bg) 100%)}
+    header{position:sticky;top:0;z-index:10;background:rgba(246,247,243,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(152,161,142,.32)}
     .topbar{max-width:1180px;margin:0 auto;padding:16px 22px 14px}
     .brand{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:12px}
     h1{margin:0;font-size:24px;letter-spacing:.02em}
@@ -55,424 +27,103 @@
     main{max-width:1180px;margin:0 auto;padding:26px 22px 60px}
     .intro{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px}
     .card,.bp-section{background:var(--panel);border:1px solid rgba(152,161,142,.28);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .card{padding:20px}
-    .card h2,.bp-section h2{margin:0 0 10px;font-size:19px}
-    .card p,.section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.72}
-    .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
-    .legend span{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
-    .dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid currentColor}
-    .event{color:var(--event)}.func{color:var(--func)}.call{color:var(--call)}.check{color:var(--check)}.var{color:var(--var)}
-    .bp-section{padding:22px;margin-top:22px;scroll-margin-top:130px}
-    .section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:16px}
-    .class-tag{border-radius:999px;padding:7px 10px;font-size:12px;background:#f0f1eb;color:#4f594d;white-space:nowrap}
-    .flow-wrap{overflow:auto;border:1px solid rgba(152,161,142,.24);border-radius:16px;background:#fffefa;padding:12px}
-    svg{min-width:1040px;width:100%;height:auto;display:block}
-    .node{cursor:pointer;transition:.18s ease}
-    .node rect{stroke-width:2;filter:drop-shadow(0 5px 10px rgba(32,35,31,.06))}
-    .node:hover rect{stroke:#1f2937}
-    .node.active rect{stroke:#111827;stroke-width:3}
-    .node-label{font-size:15px;font-weight:700;fill:#20231f;pointer-events:none}
-    .node-sub{font-size:12px;fill:#687064;pointer-events:none}
-    .wire{stroke:var(--line);stroke-width:2.2;fill:none;marker-end:url(#arrow)}
-    .wire.true{stroke:var(--call)}
-    .wire.false{stroke:var(--danger)}
-    .wire.data{stroke:var(--func);stroke-dasharray:5 5}
-    .wire-label{font-size:12px;fill:#687064}
-    .below{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;margin-top:16px}
-    .steps,.inspector{border:1px solid rgba(152,161,142,.24);border-radius:16px;padding:16px;background:#fff}
-    .steps h3,.inspector h3{margin:0 0 10px;font-size:15px}
-    .steps ol{margin:0;padding-left:20px;color:var(--muted);line-height:1.8;font-size:14px}
-    code{background:#f2f3ed;border:1px solid rgba(152,161,142,.25);border-radius:6px;padding:1px 5px;color:#334032}
-    .js-desc{min-height:54px;margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.65}
-    .node-list{display:flex;flex-wrap:wrap;gap:8px}
-    .node-chip{border:1px solid rgba(152,161,142,.34);background:#fbfcf7;border-radius:999px;padding:6px 9px;font-size:12px;color:#4f594d;cursor:pointer}
-    .node-chip:hover{border-color:rgba(63,141,112,.55)}
-    .note{margin-top:14px;border-left:4px solid var(--check);background:var(--check-soft);border-radius:12px;padding:12px 14px;color:#5f451c;font-size:13px;line-height:1.7}
-    @media (max-width:860px){
-      .intro,.below{grid-template-columns:1fr}
-      .brand,.section-head{display:block}
-      .badge,.class-tag{display:inline-block;margin-top:10px}
-      main{padding-inline:14px}
-    }
+    .card{padding:20px}.card h2,.bp-section h2{margin:0 0 10px;font-size:19px}.card p,.section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.72}
+    .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.legend span{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid currentColor}.event{color:var(--event)}.func{color:var(--func)}.call{color:var(--call)}.check{color:var(--check)}.var{color:var(--var)}
+    .bp-section{padding:22px;margin-top:22px;scroll-margin-top:130px}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:14px}.class-tag{border-radius:999px;padding:7px 10px;font-size:12px;background:#f0f1eb;color:#4f594d;white-space:nowrap}
+    .bp-tabs{display:flex;gap:6px;overflow:auto;margin:0 0 14px;padding:7px;border:1px solid rgba(152,161,142,.28);border-radius:15px;background:#f4f5ef}
+    .bp-tab{appearance:none;border:1px solid transparent;background:transparent;color:#566052;border-radius:11px;padding:8px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+    .bp-tab.active{background:#fffefa;border-color:rgba(63,141,112,.35);color:#244c3d;box-shadow:0 5px 14px rgba(32,35,31,.06)}
+    .bp-panel{display:none}.bp-panel.active{display:block}.panel-title{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:0 0 10px}.panel-title h3{margin:0;font-size:16px}.panel-title p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+    .flow-wrap{overflow:auto;border:1px solid rgba(152,161,142,.24);border-radius:16px;background:#fffefa;padding:12px}svg{min-width:1040px;width:100%;height:auto;display:block}
+    .node{cursor:pointer;transition:.18s ease}.node rect{stroke-width:2;filter:drop-shadow(0 5px 10px rgba(32,35,31,.06))}.node:hover rect{stroke:#1f2937}.node.active rect{stroke:#111827;stroke-width:3}.node-label{font-size:15px;font-weight:700;fill:#20231f;pointer-events:none}.node-sub{font-size:12px;fill:#687064;pointer-events:none}
+    .wire{stroke:var(--line);stroke-width:2.2;fill:none;marker-end:url(#arrow)}.wire.true{stroke:var(--call)}.wire.false{stroke:var(--danger)}.wire.data{stroke:var(--func);stroke-dasharray:5 5}.wire-label{font-size:12px;fill:#687064}
+    .below{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;margin-top:16px}.steps,.inspector{border:1px solid rgba(152,161,142,.24);border-radius:16px;padding:16px;background:#fff}.steps h3,.inspector h3{margin:0 0 10px;font-size:15px}.steps ol{margin:0;padding-left:20px;color:var(--muted);line-height:1.8;font-size:14px}code{background:#f2f3ed;border:1px solid rgba(152,161,142,.25);border-radius:6px;padding:1px 5px;color:#334032}.js-desc{min-height:54px;margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.65}.node-list{display:flex;flex-wrap:wrap;gap:8px}.node-chip{border:1px solid rgba(152,161,142,.34);background:#fbfcf7;border-radius:999px;padding:6px 9px;font-size:12px;color:#4f594d;cursor:pointer}.node-chip:hover{border-color:rgba(63,141,112,.55)}.note{margin-top:14px;border-left:4px solid var(--check);background:var(--check-soft);border-radius:12px;padding:12px 14px;color:#5f451c;font-size:13px;line-height:1.7}
+    @media (max-width:860px){.intro,.below{grid-template-columns:1fr}.brand,.section-head,.panel-title{display:block}.badge,.class-tag{display:inline-block;margin-top:10px}main{padding-inline:14px}}
   </style>
 </head>
 <body>
   <header>
     <div class="topbar">
-      <div class="brand">
-        <div>
-          <h1>交互系统最小闭环：蓝图连接示意</h1>
-          <p class="subtitle">当前目标：进入范围显示提示，按 E 调用接口，离开范围清除目标。先用 Print String 验证链路。</p>
-        </div>
-        <span class="badge">BP_MainCharacter + BP_InteractableActor</span>
-      </div>
-      <nav>
-        <a href="#overview">总览链路</a>
-        <a href="#interactable">BP_InteractableActor</a>
-        <a href="#main-character">BP_MainCharacter</a>
-        <a href="#acceptance">验证顺序</a>
-      </nav>
+      <div class="brand"><div><h1>交互系统最小闭环：蓝图连接示意</h1><p class="subtitle">当前版本：C++ 主角管理当前目标和按键调用；蓝图 Actor 负责组件、Overlap 通知和具体接口表现。</p></div><span class="badge">C++骨架 + 蓝图表现</span></div>
+      <nav><a href="#overview">总览链路</a><a href="#interactable">BP_InteractableActor</a><a href="#main-character">BP_MainCharacter</a><a href="#acceptance">验证顺序</a></nav>
     </div>
   </header>
-
   <main>
     <section class="intro">
-      <div class="card">
-        <h2>这张图解决什么</h2>
-        <p>你已经在接口里有 <code>Interact</code>、<code>GetInteractPrompt</code>、<code>CanInteract</code>，也在蓝图里建了查看数据变量。现在要做的是把 Actor 的接口响应和主角的当前目标变量接起来。</p>
-      </div>
-      <div class="card">
-        <h2>节点颜色</h2>
-        <div class="legend">
-          <span><i class="dot event"></i>红/蓝：事件入口</span>
-          <span><i class="dot func"></i>紫：接口函数</span>
-          <span><i class="dot call"></i>绿：接口 Message 调用</span>
-          <span><i class="dot check"></i>黄：判断 / Branch</span>
-          <span><i class="dot var"></i>绿灰：变量保存</span>
-        </div>
-      </div>
+      <div class="card"><h2>当前分工</h2><p><code>AMainCharacter</code> 负责 <code>CurrentInteractTarget</code>、<code>Set/Clear</code>、<code>InteractAction</code> 和接口调用。<code>BP_InteractableActor</code> 负责在 Overlap 时通知主角，并实现 <code>InteractableInterface</code> 的具体表现。</p></div>
+      <div class="card"><h2>节点颜色</h2><div class="legend"><span><i class="dot event"></i>蓝：事件入口</span><span><i class="dot func"></i>紫：接口函数</span><span><i class="dot call"></i>绿：调用 / 执行</span><span><i class="dot check"></i>黄：判断</span><span><i class="dot var"></i>绿灰：变量 / 数据</span></div></div>
     </section>
 
     <section class="bp-section" id="overview" data-blueprint="Overview">
-      <div class="section-head">
-        <div>
-          <h2>总览链路：Actor 发现目标，主角持有目标，按键触发接口</h2>
-          <p>先不要做 UI。当前只验证接口调用链：Overlap 进入、保存目标、读取提示、按 E、触发 Interact、离开后清除。</p>
-        </div>
-        <span class="class-tag">Minimal Loop</span>
-      </div>
-      <div class="flow-wrap">
-        <svg viewBox="0 0 1120 330" role="img" aria-label="交互系统总览链路">
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0,0 L10,5 L0,10 z" fill="#98a18e"></path>
-            </marker>
-          </defs>
-          <path class="wire" d="M190 102 L290 102"></path>
-          <path class="wire" d="M470 102 L580 102"></path>
-          <path class="wire data" d="M760 102 L870 102"></path>
-          <path class="wire" d="M190 232 L300 232"></path>
-          <path class="wire true" d="M480 232 L590 232"></path>
-          <path class="wire true" d="M770 232 L880 232"></path>
-
-          <g class="node" data-title="InteractionBox BeginOverlap" data-desc="放在可交互 Actor 上的 Box Collision。主角进入时，把这个 Actor 自己传给主角。" transform="translate(40 64)">
-            <rect width="150" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect>
-            <text class="node-label" x="16" y="31">BeginOverlap</text>
-            <text class="node-sub" x="16" y="55">InteractionBox</text>
-          </g>
-          <g class="node" data-title="SetCurrentInteractTarget(Self)" data-desc="在 BP_InteractableActor 内调用主角函数，参数传 Self。主角只保存当前可交互目标。" transform="translate(290 64)">
-            <rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">SetCurrentTarget</text>
-            <text class="node-sub" x="16" y="55">TargetActor = Self</text>
-          </g>
-          <g class="node" data-title="CurrentInteractTarget" data-desc="主角持有的 Actor 引用。它不关心具体是照片、钥匙还是门，只要目标实现接口即可。" transform="translate(580 64)">
-            <rect width="180" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect>
-            <text class="node-label" x="16" y="31">CurrentTarget</text>
-            <text class="node-sub" x="16" y="55">Actor Reference</text>
-          </g>
-          <g class="node" data-title="GetInteractPrompt Message" data-desc="主角向当前目标询问提示词。现在先 Print String，之后再接提示 UI。" transform="translate(870 64)">
-            <rect width="190" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect>
-            <text class="node-label" x="16" y="31">Get Prompt</text>
-            <text class="node-sub" x="16" y="55">Message + Print</text>
-          </g>
-
-          <g class="node" data-title="IA_Interact Triggered" data-desc="玩家按 E。注意这一步在 BP_MainCharacter 里，不在可交互 Actor 里。" transform="translate(40 194)">
-            <rect width="150" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect>
-            <text class="node-label" x="16" y="31">IA_Interact</text>
-            <text class="node-sub" x="16" y="55">Triggered</text>
-          </g>
-          <g class="node" data-title="IsValid + CanInteract" data-desc="先判断 CurrentInteractTarget 有效，再调用 CanInteract Message。True 才执行交互。" transform="translate(300 194)">
-            <rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect>
-            <text class="node-label" x="16" y="31">Validate Target</text>
-            <text class="node-sub" x="16" y="55">IsValid + CanInteract</text>
-          </g>
-          <g class="node" data-title="Interact Message" data-desc="主角调用接口，不 Cast 到具体 Actor。Target 是 CurrentInteractTarget，Interactor 传 Self。" transform="translate(590 194)">
-            <rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">Interact</text>
-            <text class="node-sub" x="16" y="55">Message 调用接口</text>
-          </g>
-          <g class="node" data-title="BP_InteractableActor.Interact" data-desc="这里进入 BP_InteractableActor 的红色事件节点。当前先 Print InspectTitle，后续再打开查看 UI。" transform="translate(880 194)">
-            <rect width="190" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect>
-            <text class="node-label" x="16" y="31">Event Interact</text>
-            <text class="node-sub" x="16" y="55">Print InspectTitle</text>
-          </g>
-        </svg>
-      </div>
-      <div class="below">
-        <div class="steps">
-          <h3>照图连接顺序</h3>
-          <ol>
-            <li>先在 <code>BP_InteractableActor</code> 的 <code>InteractionBox</code> 里做 Begin / End Overlap。</li>
-            <li>BeginOverlap Cast 到 <code>BP_MainCharacter</code>，调用 <code>SetCurrentInteractTarget(Self)</code>。</li>
-            <li>主角保存 <code>CurrentInteractTarget</code> 后调用 <code>GetInteractPrompt Message</code>，先 Print。</li>
-            <li>主角按 <code>IA_Interact</code> 时验证目标，然后调用 <code>Interact Message</code>。</li>
-          </ol>
-        </div>
-        <aside class="inspector">
-          <h3>节点说明</h3>
-          <p class="js-desc">点击图里的节点查看说明。</p>
-          <div class="node-list js-node-list"></div>
-        </aside>
-      </div>
+      <div class="section-head"><div><h2>总览链路：蓝图发现目标，C++ 主角执行接口</h2><p>主角不关心目标具体是什么，只通过接口统一调用；目标蓝图自己决定提示词和交互表现。</p></div><span class="class-tag">Minimal Loop</span></div>
+      <div class="flow-wrap"><svg viewBox="0 0 1120 330" role="img" aria-label="交互系统总览链路"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#98a18e"></path></marker></defs>
+        <path class="wire" d="M190 102 L300 102"></path><path class="wire true" d="M480 102 L600 102"></path><path class="wire" d="M190 232 L300 232"></path><path class="wire true" d="M480 232 L600 232"></path><path class="wire true" d="M780 232 L900 232"></path>
+        <g class="node" data-title="InteractionBox BeginOverlap" data-desc="BP_InteractableActor 的 Box Collision 检测到主角进入范围。" transform="translate(40 64)"><rect width="150" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">BeginOverlap</text><text class="node-sub" x="16" y="55">交互范围</text></g>
+        <g class="node" data-title="SetCurrentInteractTarget(Self)" data-desc="蓝图调用主角 C++ 函数，告诉主角当前目标是自己。" transform="translate(300 64)"><rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">SetCurrentTarget</text><text class="node-sub" x="16" y="55">TargetActor = Self</text></g>
+        <g class="node" data-title="AMainCharacter 持有目标" data-desc="CurrentInteractTarget 存在 C++ 主角里，不再在蓝图里重复建一套。" transform="translate(600 64)"><rect width="190" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">CurrentTarget</text><text class="node-sub" x="16" y="55">C++ Actor 引用</text></g>
+        <g class="node" data-title="IA_Interact 输入" data-desc="输入资产在 BP_MainCharacter 细节面板指定，C++ SetupPlayerInputComponent 绑定回调。" transform="translate(40 194)"><rect width="150" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">IA_Interact</text><text class="node-sub" x="16" y="55">Started</text></g>
+        <g class="node" data-title="C++ Interact 回调" data-desc="C++ 检查目标有效、实现接口、CanInteract 为 True，然后调用 Execute_Interact。" transform="translate(300 194)"><rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">Interact()</text><text class="node-sub" x="16" y="55">C++ 回调</text></g>
+        <g class="node" data-title="Execute_Interact" data-desc="C++ 的接口调用入口；蓝图里看到的 Message 节点背后就是这类调用。" transform="translate(600 194)"><rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">Execute_Interact</text><text class="node-sub" x="16" y="55">调用接口</text></g>
+        <g class="node" data-title="BP_InteractableActor.Event Interact" data-desc="进入目标蓝图实现的红色 Interact 事件。当前先 Print InspectTitle。" transform="translate(900 194)"><rect width="190" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect><text class="node-label" x="16" y="31">Event Interact</text><text class="node-sub" x="16" y="55">目标自己响应</text></g>
+      </svg></div>
+      <div class="below"><div class="steps"><h3>当前总流程</h3><ol><li>目标蓝图的 <code>InteractionBox</code> 发现主角。</li><li>目标蓝图调用主角 C++ 的 <code>SetCurrentInteractTarget(Self)</code>。</li><li>玩家按 <code>IA_Interact</code>，C++ 主角回调 <code>Interact()</code>。</li><li>C++ 主角通过接口调用目标蓝图的 <code>Event Interact</code>。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击图里的节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
     </section>
 
     <section class="bp-section" id="interactable" data-blueprint="BP_InteractableActor">
-      <div class="section-head">
-        <div>
-          <h2>BP_InteractableActor：变量、接口函数、Overlap 事件</h2>
-          <p>这个蓝图先作为查看型交互模板。它有数据，也实现接口；但它不持有当前目标，当前目标由主角保存。</p>
-        </div>
-        <span class="class-tag">Actor Blueprint</span>
-      </div>
-      <div class="flow-wrap">
-        <svg viewBox="0 0 1120 420" role="img" aria-label="BP_InteractableActor 蓝图连接示意">
-          <path class="wire data" d="M250 96 L340 96"></path>
-          <path class="wire data" d="M520 96 L620 96"></path>
-          <path class="wire" d="M250 230 L340 230"></path>
-          <path class="wire true" d="M520 230 L620 230"></path>
-          <path class="wire" d="M250 336 L340 336"></path>
-          <path class="wire" d="M520 336 L620 336"></path>
-
-          <g class="node" data-title="InteractablePrompt 变量" data-desc="建议新增 Text 变量 InteractablePrompt，默认值写“按 E 查看”。GetInteractPrompt 直接返回它。" transform="translate(40 58)">
-            <rect width="210" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect>
-            <text class="node-label" x="16" y="31">InteractablePrompt</text>
-            <text class="node-sub" x="16" y="55">Text：按 E 查看</text>
-          </g>
-          <g class="node" data-title="GetInteractPrompt 函数" data-desc="这是紫色接口函数，因为它有返回值。把 InteractablePrompt 接到 Return Value。" transform="translate(340 58)">
-            <rect width="180" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect>
-            <text class="node-label" x="16" y="31">Get Prompt</text>
-            <text class="node-sub" x="16" y="55">Interface Function</text>
-          </g>
-          <g class="node" data-title="Return Value = InteractablePrompt" data-desc="返回提示文本给主角。主角拿到后可以 Print，后续再送到提示 Widget。" transform="translate(620 58)">
-            <rect width="190" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">Return Text</text>
-            <text class="node-sub" x="16" y="55">返回提示词</text>
-          </g>
-
-          <g class="node" data-title="CanInteract 函数" data-desc="当前最小闭环直接返回 True。以后上锁、没钥匙、状态不允许时，再在这里写条件。" transform="translate(40 192)">
-            <rect width="210" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect>
-            <text class="node-label" x="16" y="31">CanInteract</text>
-            <text class="node-sub" x="16" y="55">Interface Function</text>
-          </g>
-          <g class="node" data-title="Return True" data-desc="先让所有测试对象都能交互。不要在这个阶段提前引入背包、锁、任务状态。" transform="translate(340 192)">
-            <rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">Return True</text>
-            <text class="node-sub" x="16" y="55">最小闭环</text>
-          </g>
-          <g class="node" data-title="未来条件分支" data-desc="后面可以改成 HasKey、QuestState、bAlreadyViewed 等条件，但现在先不做。" transform="translate(620 192)">
-            <rect width="190" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect>
-            <text class="node-label" x="16" y="31">Later Branch</text>
-            <text class="node-sub" x="16" y="55">钥匙 / 任务 / 状态</text>
-          </g>
-
-          <g class="node" data-title="Event Interact" data-desc="这是红色事件节点，因为 Interact 没有返回值。玩家按 E 后会进入这里。" transform="translate(40 298)">
-            <rect width="210" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect>
-            <text class="node-label" x="16" y="31">Event Interact</text>
-            <text class="node-sub" x="16" y="55">红色接口事件</text>
-          </g>
-          <g class="node" data-title="InspectTitle / Description / Image" data-desc="你现在创建的两个 Text 和一个 Texture2D 就放这里。Interact 里先读 InspectTitle 做 Print 验证。" transform="translate(340 298)">
-            <rect width="180" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect>
-            <text class="node-label" x="16" y="31">Inspect Data</text>
-            <text class="node-sub" x="16" y="55">Title / Image / Desc</text>
-          </g>
-          <g class="node" data-title="Print String" data-desc="把 InspectTitle 转成 String 打印。看见标题，说明主角的接口调用已经打到这个 Actor 里了。" transform="translate(620 298)">
-            <rect width="190" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">Print String</text>
-            <text class="node-sub" x="16" y="55">测试 Interact</text>
-          </g>
-        </svg>
-      </div>
-      <div class="below">
-        <div class="steps">
-          <h3>这个蓝图里先完成这些</h3>
-          <ol>
-            <li>变量：<code>InspectTitle</code>、<code>InspectDescription</code>、<code>InspectImage</code> 已经没问题。</li>
-            <li>再加一个 <code>InteractablePrompt</code>，类型 Text，默认值 <code>按 E 查看</code>。</li>
-            <li><code>GetInteractPrompt</code> 返回 <code>InteractablePrompt</code>。</li>
-            <li><code>CanInteract</code> 返回 <code>true</code>。</li>
-            <li><code>Interact</code> 先 <code>Print String</code> 打印 <code>InspectTitle</code>。</li>
-          </ol>
-          <div class="note">不要急着派生具体 Actor。先把这个类拖进关卡测试，确认接口链路通了，再考虑是否派生具体相框、钥匙、门。</div>
-        </div>
-        <aside class="inspector">
-          <h3>节点说明</h3>
-          <p class="js-desc">点击图里的节点查看说明。</p>
-          <div class="node-list js-node-list"></div>
-        </aside>
-      </div>
+      <div class="section-head"><div><h2>BP_InteractableActor：组件、事件图表、接口函数</h2><p>像虚幻蓝图编辑器一样切换查看：组件视口看结构，事件图表接 Overlap，接口函数写提示和交互表现。</p></div><span class="class-tag">Actor Blueprint</span></div>
+      <div class="bp-tabs" role="tablist"><button class="bp-tab active" data-tab="components">组件视口</button><button class="bp-tab" data-tab="eventgraph">事件图表</button><button class="bp-tab" data-tab="functions">接口函数</button></div>
+      <div class="bp-panel active" data-panel="components"><div class="panel-title"><div><h3>组件视口：这个 Actor 应该长什么结构</h3><p>先把可交互范围和显示对象放清楚；接口不会出现在组件树里。</p></div></div><div class="flow-wrap"><svg viewBox="0 0 1120 300" role="img"><path class="wire" d="M250 90 L360 90"></path><path class="wire" d="M250 210 L360 210"></path><path class="wire data" d="M560 150 L690 150"></path><g class="node" data-title="DefaultSceneRoot" data-desc="Actor 根节点。当前最小回环不用复杂父子结构。" transform="translate(40 52)"><rect width="210" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">DefaultSceneRoot</text><text class="node-sub" x="16" y="55">Root</text></g><g class="node" data-title="MeshComponent" data-desc="显示相框、钥匙、门等具体模型或 Sprite。" transform="translate(360 52)"><rect width="200" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">MeshComponent</text><text class="node-sub" x="16" y="55">显示物体</text></g><g class="node" data-title="InteractionBox" data-desc="放在玩家允许交互的位置。BeginOverlap / EndOverlap 都从它开始。" transform="translate(360 172)"><rect width="200" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">InteractionBox</text><text class="node-sub" x="16" y="55">Box Collision</text></g><g class="node" data-title="Inspect 数据变量" data-desc="InspectTitle、InspectDescription、InspectImage、InteractablePrompt 都是该 Actor 自己的数据。" transform="translate(690 112)"><rect width="240" height="96" rx="14" fill="#f0edfb" stroke="#7967aa"></rect><text class="node-label" x="16" y="30">Variables</text><text class="node-sub" x="16" y="55">Title / Description / Image</text><text class="node-sub" x="16" y="76">InteractablePrompt</text></g></svg></div></div>
+      <div class="bp-panel" data-panel="eventgraph"><div class="panel-title"><div><h3>事件图表：Overlap 只负责通知主角</h3><p>这里不要写按 E，也不要自己保存 CurrentTarget；当前目标由 C++ 主角统一管理。</p></div></div><div class="flow-wrap"><svg viewBox="0 0 1120 360" role="img"><path class="wire" d="M220 100 L330 100"></path><path class="wire true" d="M510 100 L630 100"></path><path class="wire" d="M220 250 L330 250"></path><path class="wire true" d="M510 250 L630 250"></path><g class="node" data-title="OnComponentBeginOverlap" data-desc="InteractionBox 的 BeginOverlap。OtherActor 应该是进入范围的主角。" transform="translate(40 62)"><rect width="180" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">BeginOverlap</text><text class="node-sub" x="16" y="55">InteractionBox</text></g><g class="node" data-title="Cast to BP_MainCharacter" data-desc="确认进入范围的是主角，然后才能调用主角 C++ 暴露出来的函数。" transform="translate(330 62)"><rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">Cast To</text><text class="node-sub" x="16" y="55">BP_MainCharacter</text></g><g class="node" data-title="SetCurrentInteractTarget(Self)" data-desc="调用 C++ 函数。TargetActor 参数传 Self，也就是这个可交互 Actor 自己。" transform="translate(630 62)"><rect width="230" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">SetCurrentInteractTarget</text><text class="node-sub" x="16" y="55">TargetActor = Self</text></g><g class="node" data-title="OnComponentEndOverlap" data-desc="InteractionBox 的 EndOverlap。主角离开范围时触发。" transform="translate(40 212)"><rect width="180" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">EndOverlap</text><text class="node-sub" x="16" y="55">InteractionBox</text></g><g class="node" data-title="Cast to BP_MainCharacter" data-desc="同样先确认离开的是主角。" transform="translate(330 212)"><rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">Cast To</text><text class="node-sub" x="16" y="55">BP_MainCharacter</text></g><g class="node" data-title="ClearCurrentInteractTarget(Self)" data-desc="调用 C++ 函数。C++ 内部会判断 CurrentTarget 是否等于 Self，避免误清别的目标。" transform="translate(630 212)"><rect width="230" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">ClearCurrentInteractTarget</text><text class="node-sub" x="16" y="55">TargetActor = Self</text></g></svg></div></div>
+      <div class="bp-panel" data-panel="functions"><div class="panel-title"><div><h3>接口函数：目标自己回答怎么提示、能不能交互、交互后做什么</h3><p>这三个函数来自 <code>InteractableInterface</code>，具体实现留在蓝图里。</p></div></div><div class="flow-wrap"><svg viewBox="0 0 1120 420" role="img"><path class="wire data" d="M250 96 L360 96"></path><path class="wire true" d="M250 220 L360 220"></path><path class="wire" d="M250 336 L360 336"></path><path class="wire" d="M540 336 L650 336"></path><g class="node" data-title="GetInteractPrompt" data-desc="紫色函数节点，因为它有返回值。返回 InteractablePrompt。" transform="translate(40 58)"><rect width="210" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect><text class="node-label" x="16" y="31">GetInteractPrompt</text><text class="node-sub" x="16" y="55">Return Text</text></g><g class="node" data-title="Return InteractablePrompt" data-desc="默认可以是“按 E 查看”。之后可以根据状态返回“需要钥匙”等文本。" transform="translate(360 58)"><rect width="210" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">InteractablePrompt</text><text class="node-sub" x="16" y="55">Text 变量</text></g><g class="node" data-title="CanInteract" data-desc="最小回环直接返回 True。以后上锁、背包检查、任务状态可以写在这里。" transform="translate(40 182)"><rect width="210" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect><text class="node-label" x="16" y="31">CanInteract</text><text class="node-sub" x="16" y="55">Return Bool</text></g><g class="node" data-title="Return True" data-desc="先保证链路跑通，不提前加入复杂条件。" transform="translate(360 182)"><rect width="210" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">Return True</text><text class="node-sub" x="16" y="55">最小回环</text></g><g class="node" data-title="Event Interact" data-desc="红色事件节点，因为没有返回值。C++ Execute_Interact 会打到这里。" transform="translate(40 298)"><rect width="210" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect><text class="node-label" x="16" y="31">Event Interact</text><text class="node-sub" x="16" y="55">接口事件</text></g><g class="node" data-title="Inspect 数据" data-desc="读取 InspectTitle / InspectImage / InspectDescription。当前先用标题打印验证。" transform="translate(360 298)"><rect width="180" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">Inspect Data</text><text class="node-sub" x="16" y="55">Title/Image/Desc</text></g><g class="node" data-title="Print String" data-desc="把 InspectTitle 转 String 打印。能打印说明 C++ 主角已经调用到目标蓝图了。" transform="translate(650 298)"><rect width="190" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">Print String</text><text class="node-sub" x="16" y="55">验证交互</text></g></svg></div></div>
+      <div class="below"><div class="steps"><h3>BP_InteractableActor 当前要接的内容</h3><ol><li>组件视口：确认有 <code>MeshComponent</code> 和 <code>InteractionBox</code>。</li><li>事件图表：<code>BeginOverlap</code> 调主角 <code>SetCurrentInteractTarget(Self)</code>。</li><li>事件图表：<code>EndOverlap</code> 调主角 <code>ClearCurrentInteractTarget(Self)</code>。</li><li>接口函数：实现 <code>GetInteractPrompt</code>、<code>CanInteract</code>、<code>Interact</code>。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击当前标签页图里的节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
     </section>
 
     <section class="bp-section" id="main-character" data-blueprint="BP_MainCharacter">
-      <div class="section-head">
-        <div>
-          <h2>BP_MainCharacter：CurrentInteractTarget、设置/清除、按 E 调用</h2>
-          <p>主角侧不保存查看数据，也不 Cast 到具体交互物。主角只保存一个 Actor 引用，并通过接口 Message 调用它。</p>
-        </div>
-        <span class="class-tag">Character Blueprint</span>
-      </div>
-      <div class="flow-wrap">
-        <svg viewBox="0 0 1120 510" role="img" aria-label="BP_MainCharacter 蓝图连接示意">
-          <path class="wire" d="M220 94 L310 94"></path>
-          <path class="wire true" d="M490 94 L590 94"></path>
-          <path class="wire data" d="M770 94 L880 94"></path>
-          <path class="wire" d="M220 248 L310 248"></path>
-          <path class="wire true" d="M490 248 L590 248"></path>
-          <path class="wire" d="M220 402 L310 402"></path>
-          <path class="wire true" d="M490 402 L590 402"></path>
-          <path class="wire true" d="M770 402 L880 402"></path>
-
-          <g class="node" data-title="SetCurrentInteractTarget(TargetActor)" data-desc="新建函数，输入参数 TargetActor 类型 Actor Object Reference。由可交互 Actor 的 BeginOverlap 调用。" transform="translate(40 56)">
-            <rect width="180" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect>
-            <text class="node-label" x="16" y="31">SetCurrentTarget</text>
-            <text class="node-sub" x="16" y="55">Function</text>
-          </g>
-          <g class="node" data-title="Does Implement Interface" data-desc="先判断 TargetActor 是否实现 InteractableInterface。True 才保存，避免随便碰到 Actor 都变成目标。" transform="translate(310 56)">
-            <rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect>
-            <text class="node-label" x="16" y="31">Does Implement</text>
-            <text class="node-sub" x="16" y="55">InteractableInterface</text>
-          </g>
-          <g class="node" data-title="Set CurrentInteractTarget" data-desc="变量类型用 Actor Object Reference。当前先单目标，后续需要多个候选再改列表。" transform="translate(590 56)">
-            <rect width="180" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect>
-            <text class="node-label" x="16" y="31">Set CurrentTarget</text>
-            <text class="node-sub" x="16" y="55">Actor Reference</text>
-          </g>
-          <g class="node" data-title="GetInteractPrompt Message" data-desc="Target 接 CurrentInteractTarget，Interactor 接 Self。返回 Text 先 Print String。" transform="translate(880 56)">
-            <rect width="190" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect>
-            <text class="node-label" x="16" y="31">Get Prompt</text>
-            <text class="node-sub" x="16" y="55">Message + Print</text>
-          </g>
-
-          <g class="node" data-title="ClearCurrentInteractTarget(TargetActor)" data-desc="新建函数，输入参数 TargetActor。由可交互 Actor 的 EndOverlap 调用。" transform="translate(40 210)">
-            <rect width="180" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect>
-            <text class="node-label" x="16" y="31">ClearCurrentTarget</text>
-            <text class="node-sub" x="16" y="55">Function</text>
-          </g>
-          <g class="node" data-title="CurrentInteractTarget == TargetActor" data-desc="这个等值判断很重要。防止以后两个交互范围重叠时，离开 A 却把 B 清掉。" transform="translate(310 210)">
-            <rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect>
-            <text class="node-label" x="16" y="31">Equal Object</text>
-            <text class="node-sub" x="16" y="55">Current == Target</text>
-          </g>
-          <g class="node" data-title="Set CurrentInteractTarget = None" data-desc="等值判断为 True 时清空目标。后续这里也负责隐藏提示 UI。" transform="translate(590 210)">
-            <rect width="180" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect>
-            <text class="node-label" x="16" y="31">Set None</text>
-            <text class="node-sub" x="16" y="55">清除当前目标</text>
-          </g>
-
-          <g class="node" data-title="IA_Interact Triggered" data-desc="Enhanced Input 的交互输入事件。玩家按 E 后进入这条链。" transform="translate(40 364)">
-            <rect width="180" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect>
-            <text class="node-label" x="16" y="31">IA_Interact</text>
-            <text class="node-sub" x="16" y="55">Triggered</text>
-          </g>
-          <g class="node" data-title="IsValid(CurrentInteractTarget)" data-desc="没有当前目标时直接不做事，避免空引用调用接口。" transform="translate(310 364)">
-            <rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect>
-            <text class="node-label" x="16" y="31">IsValid</text>
-            <text class="node-sub" x="16" y="55">CurrentTarget</text>
-          </g>
-          <g class="node" data-title="CanInteract Message" data-desc="Target 接 CurrentInteractTarget，Interactor 接 Self。返回 bool 接 Branch。" transform="translate(590 364)">
-            <rect width="180" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect>
-            <text class="node-label" x="16" y="31">CanInteract</text>
-            <text class="node-sub" x="16" y="55">Message</text>
-          </g>
-          <g class="node" data-title="Interact Message" data-desc="CanInteract 为 True 后调用。Target 是 CurrentInteractTarget，Interactor 是 Self。" transform="translate(880 364)">
-            <rect width="190" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">Interact</text>
-            <text class="node-sub" x="16" y="55">Message</text>
-          </g>
-        </svg>
-      </div>
-      <div class="below">
-        <div class="steps">
-          <h3>主角侧蓝图连接顺序</h3>
-          <ol>
-            <li>变量：<code>CurrentInteractTarget</code>，类型 <code>Actor Object Reference</code>。</li>
-            <li>函数：<code>SetCurrentInteractTarget(TargetActor)</code>，先判断接口，再保存，再读提示词。</li>
-            <li>函数：<code>ClearCurrentInteractTarget(TargetActor)</code>，必须先做 <code>Current == Target</code>。</li>
-            <li>事件：<code>IA_Interact Triggered</code>，有效目标 + <code>CanInteract</code> 为 True 后调用 <code>Interact Message</code>。</li>
-          </ol>
-        </div>
-        <aside class="inspector">
-          <h3>节点说明</h3>
-          <p class="js-desc">点击图里的节点查看说明。</p>
-          <div class="node-list js-node-list"></div>
-        </aside>
-      </div>
+      <div class="section-head"><div><h2>BP_MainCharacter：只配置输入资产，不再手写交互骨架</h2><p>当前主角的交互骨架已经在 C++。蓝图侧主要负责把 <code>InteractAction</code> 指到你的 <code>IA_Interact</code> 资产。</p></div><span class="class-tag">Character Blueprint</span></div>
+      <div class="bp-tabs" role="tablist"><button class="bp-tab active" data-tab="details">细节面板</button><button class="bp-tab" data-tab="inputflow">C++输入流</button><button class="bp-tab" data-tab="targetflow">C++交互流</button></div>
+      <div class="bp-panel active" data-panel="details"><div class="panel-title"><div><h3>细节面板：把输入资产填给 C++ 变量</h3><p>这一步是蓝图和 C++ 的最常见协作：C++ 暴露变量，蓝图实例填具体资源。</p></div></div><div class="flow-wrap"><svg viewBox="0 0 1120 280" role="img"><path class="wire data" d="M250 102 L370 102"></path><path class="wire data" d="M250 202 L370 202"></path><g class="node" data-title="InteractAction 变量" data-desc="来自 C++ 的 UPROPERTY(EditAnywhere, BlueprintReadWrite)。" transform="translate(40 64)"><rect width="210" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">InteractAction</text><text class="node-sub" x="16" y="55">C++ 暴露变量</text></g><g class="node" data-title="指定 IA_Interact" data-desc="在 BP_MainCharacter 细节面板里把这个变量设置为你的 IA_Interact 输入动作资产。" transform="translate(370 64)"><rect width="220" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">IA_Interact</text><text class="node-sub" x="16" y="55">Input Action 资产</text></g><g class="node" data-title="DefaultMappingContext" data-desc="确认 Mapping Context 里包含 IA_Interact，并且 BeginPlay 已经 AddMappingContext。" transform="translate(40 164)"><rect width="210" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">MappingContext</text><text class="node-sub" x="16" y="55">输入映射</text></g><g class="node" data-title="E 键映射" data-desc="在 IMC 里把 E 或你想要的按键绑定到 IA_Interact。" transform="translate(370 164)"><rect width="220" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">Key = E</text><text class="node-sub" x="16" y="55">触发 IA_Interact</text></g></svg></div></div>
+      <div class="bp-panel" data-panel="inputflow"><div class="panel-title"><div><h3>C++输入流：SetupPlayerInputComponent 绑定回调</h3><p>这部分不需要你在蓝图事件图表里再接 <code>IA_Interact</code>。</p></div></div><div class="flow-wrap"><svg viewBox="0 0 1120 280" role="img"><path class="wire" d="M230 140 L340 140"></path><path class="wire true" d="M540 140 L660 140"></path><path class="wire true" d="M850 140 L960 140"></path><g class="node" data-title="SetupPlayerInputComponent" data-desc="角色初始化输入绑定时调用。" transform="translate(40 102)"><rect width="190" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">SetupInput</text><text class="node-sub" x="16" y="55">C++ Override</text></g><g class="node" data-title="BindAction(InteractAction)" data-desc="如果 InteractAction 不为空，绑定 Started 到 AMainCharacter::Interact。" transform="translate(340 102)"><rect width="200" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">BindAction</text><text class="node-sub" x="16" y="55">Started</text></g><g class="node" data-title="AMainCharacter::Interact" data-desc="玩家按下交互键后进入 C++ 回调。" transform="translate(660 102)"><rect width="190" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">Interact()</text><text class="node-sub" x="16" y="55">C++ 回调函数</text></g><g class="node" data-title="调用接口" data-desc="回调里不再通知蓝图按键事件，而是直接检查目标并 Execute_Interact。" transform="translate(960 102)"><rect width="140" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect><text class="node-label" x="16" y="31">Execute</text><text class="node-sub" x="16" y="55">接口调用</text></g></svg></div></div>
+      <div class="bp-panel" data-panel="targetflow"><div class="panel-title"><div><h3>C++交互流：主角统一持有当前目标</h3><p>蓝图只调用入口函数；判断、保存、清除、按键触发都在 C++ 主角里。</p></div></div><div class="flow-wrap"><svg viewBox="0 0 1120 360" role="img"><path class="wire" d="M240 94 L350 94"></path><path class="wire true" d="M530 94 L650 94"></path><path class="wire" d="M240 250 L350 250"></path><path class="wire true" d="M530 250 L650 250"></path><path class="wire true" d="M830 250 L940 250"></path><g class="node" data-title="SetCurrentInteractTarget" data-desc="蓝图 Overlap 调用这个 C++ 函数。C++ 内部检查目标是否有效并实现接口。" transform="translate(40 56)"><rect width="200" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">SetCurrentTarget</text><text class="node-sub" x="16" y="55">BlueprintCallable</text></g><g class="node" data-title="ImplementsInterface" data-desc="只有实现 InteractableInterface 的 Actor 才能被保存为当前目标。" transform="translate(350 56)"><rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">Check Interface</text><text class="node-sub" x="16" y="55">安全过滤</text></g><g class="node" data-title="CurrentInteractTarget" data-desc="主角 C++ 变量。以后提示 UI 也从这里取目标提示词。" transform="translate(650 56)"><rect width="190" height="76" rx="14" fill="#edf4e9" stroke="#506b4e"></rect><text class="node-label" x="16" y="31">CurrentTarget</text><text class="node-sub" x="16" y="55">AActor*</text></g><g class="node" data-title="Interact()" data-desc="按 E 后进入 C++ 回调。" transform="translate(40 212)"><rect width="200" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">Interact()</text><text class="node-sub" x="16" y="55">输入回调</text></g><g class="node" data-title="Execute_CanInteract" data-desc="先问目标当前能不能交互。目标蓝图可以返回 True，也可以根据锁、钥匙、状态返回 False。" transform="translate(350 212)"><rect width="180" height="76" rx="14" fill="#f0edfb" stroke="#7967aa"></rect><text class="node-label" x="16" y="31">CanInteract</text><text class="node-sub" x="16" y="55">接口调用</text></g><g class="node" data-title="Execute_Interact" data-desc="CanInteract 为 True 时调用目标的 Interact 实现。" transform="translate(650 212)"><rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">Interact</text><text class="node-sub" x="16" y="55">接口调用</text></g><g class="node" data-title="目标蓝图表现" data-desc="最终进入 BP_InteractableActor 的 Event Interact：Print、开 UI、给道具、开门都在这里做。" transform="translate(940 212)"><rect width="160" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect><text class="node-label" x="16" y="31">Blueprint</text><text class="node-sub" x="16" y="55">具体表现</text></g></svg></div></div>
+      <div class="below"><div class="steps"><h3>BP_MainCharacter 现在要做的事</h3><ol><li>在细节面板把 <code>InteractAction</code> 指到 <code>IA_Interact</code>。</li><li>确认 <code>DefaultMappingContext</code> 里已经映射 <code>IA_Interact</code>。</li><li>不要在 BP_MainCharacter 里重复创建 <code>CurrentInteractTarget</code>。</li><li>不要在蓝图事件图表里重复接 <code>IA_Interact</code> 调接口链。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击当前标签页图里的节点查看说明。</p><div class="node-list js-node-list"></div></aside></div>
     </section>
 
-    <section class="bp-section" id="acceptance" data-blueprint="Acceptance">
-      <div class="section-head">
-        <div>
-          <h2>验证顺序：先 Print，不要马上做 UI</h2>
-          <p>这一步的通过标准不是界面漂亮，而是交互链路可证明。只要这三条 Print 按顺序出现，下一步再做提示 Widget 和查看 UI。</p>
-        </div>
-        <span class="class-tag">Checklist</span>
-      </div>
-      <div class="flow-wrap">
-        <svg viewBox="0 0 1120 250" role="img" aria-label="交互系统验证顺序">
-          <path class="wire" d="M210 112 L330 112"></path>
-          <path class="wire" d="M510 112 L630 112"></path>
-          <path class="wire" d="M810 112 L930 112"></path>
-          <g class="node" data-title="进入 InteractionBox" data-desc="预期打印：按 E 查看。说明 BeginOverlap 和 GetInteractPrompt 已经通了。" transform="translate(40 74)">
-            <rect width="170" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect>
-            <text class="node-label" x="16" y="31">进入范围</text>
-            <text class="node-sub" x="16" y="55">Print 提示词</text>
-          </g>
-          <g class="node" data-title="按 E" data-desc="预期打印：InspectTitle。说明主角按键调用了目标的 Interact 接口。" transform="translate(330 74)">
-            <rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect>
-            <text class="node-label" x="16" y="31">按 E</text>
-            <text class="node-sub" x="16" y="55">Print 标题</text>
-          </g>
-          <g class="node" data-title="离开 InteractionBox" data-desc="预期打印：清除交互目标。说明 EndOverlap 和 ClearCurrentInteractTarget 已经通了。" transform="translate(630 74)">
-            <rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect>
-            <text class="node-label" x="16" y="31">离开范围</text>
-            <text class="node-sub" x="16" y="55">清除目标</text>
-          </g>
-          <g class="node" data-title="再次按 E" data-desc="预期：没有任何交互打印。说明 CurrentInteractTarget 已经被清空。" transform="translate(930 74)">
-            <rect width="170" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect>
-            <text class="node-label" x="16" y="31">再按 E</text>
-            <text class="node-sub" x="16" y="55">不触发</text>
-          </g>
-        </svg>
-      </div>
-      <div class="below">
-        <div class="steps">
-          <h3>通过标准</h3>
-          <ol>
-            <li>进入范围时能看到提示词 Print。</li>
-            <li>按 E 时能看到 <code>InspectTitle</code> Print。</li>
-            <li>离开范围后再按 E 不再触发交互。</li>
-            <li>这三条成立后，再做 <code>InteractPromptWidget</code> 和 <code>WBP_InspectView</code>。</li>
-          </ol>
-        </div>
-        <aside class="inspector">
-          <h3>节点说明</h3>
-          <p class="js-desc">点击图里的节点查看说明。</p>
-          <div class="node-list js-node-list"></div>
-        </aside>
-      </div>
-    </section>
+    <section class="bp-section" id="acceptance" data-blueprint="Acceptance"><div class="section-head"><div><h2>验证顺序：先 Print，不要马上做 UI</h2><p>只要这条链路通，后续再把 Print 换成打开查看 UI。</p></div><span class="class-tag">Checklist</span></div><div class="flow-wrap"><svg viewBox="0 0 1120 250" role="img"><path class="wire" d="M210 112 L330 112"></path><path class="wire" d="M510 112 L630 112"></path><path class="wire" d="M810 112 L930 112"></path><g class="node" data-title="进入 InteractionBox" data-desc="预期：C++ CurrentInteractTarget 被设置为这个 Actor。" transform="translate(40 74)"><rect width="170" height="76" rx="14" fill="#eaf3fb" stroke="#477da8"></rect><text class="node-label" x="16" y="31">进入范围</text><text class="node-sub" x="16" y="55">Set Target</text></g><g class="node" data-title="按 E" data-desc="预期：BP_InteractableActor 的 Event Interact 打印 InspectTitle。" transform="translate(330 74)"><rect width="180" height="76" rx="14" fill="#e9f6ef" stroke="#3f8d70"></rect><text class="node-label" x="16" y="31">按 E</text><text class="node-sub" x="16" y="55">Print 标题</text></g><g class="node" data-title="离开 InteractionBox" data-desc="预期：C++ ClearCurrentInteractTarget 清空目标。" transform="translate(630 74)"><rect width="180" height="76" rx="14" fill="#fff4df" stroke="#b47a2b"></rect><text class="node-label" x="16" y="31">离开范围</text><text class="node-sub" x="16" y="55">Clear Target</text></g><g class="node" data-title="再次按 E" data-desc="预期：没有任何交互打印，因为当前目标为空。" transform="translate(930 74)"><rect width="170" height="76" rx="14" fill="#fff0f1" stroke="#b85f67"></rect><text class="node-label" x="16" y="31">再按 E</text><text class="node-sub" x="16" y="55">不触发</text></g></svg></div><div class="below"><div class="steps"><h3>通过标准</h3><ol><li>进入范围后按 E 能触发目标蓝图的 <code>Event Interact</code>。</li><li>打印出的标题来自当前 Actor 的 <code>InspectTitle</code>。</li><li>离开范围后再按 E 不再触发。</li><li>这三条成立后，再进入提示 Widget 和查看 UI。</li></ol></div><aside class="inspector"><h3>节点说明</h3><p class="js-desc">点击图里的节点查看说明。</p><div class="node-list js-node-list"></div></aside></div></section>
   </main>
-
   <script>
-    document.querySelectorAll(".bp-section").forEach(section => {
-      const desc = section.querySelector(".js-desc");
-      const list = section.querySelector(".js-node-list");
-      const nodes = Array.from(section.querySelectorAll(".node"));
+    function refreshInspector(scope){
+      const activePanel = scope.querySelector('.bp-panel.active') || scope;
+      const desc = scope.querySelector('.js-desc');
+      const list = scope.querySelector('.js-node-list');
+      if(!desc || !list) return;
+      list.innerHTML = '';
+      const nodes = Array.from(activePanel.querySelectorAll('.node'));
       nodes.forEach((node, index) => {
         const title = node.dataset.title || `节点 ${index + 1}`;
-        const chip = document.createElement("button");
-        chip.className = "node-chip";
-        chip.type = "button";
+        const chip = document.createElement('button');
+        chip.className = 'node-chip';
+        chip.type = 'button';
         chip.textContent = title;
         const activate = () => {
-          nodes.forEach(n => n.classList.remove("active"));
-          node.classList.add("active");
+          scope.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+          node.classList.add('active');
           desc.textContent = node.dataset.desc || title;
         };
-        node.addEventListener("click", activate);
-        chip.addEventListener("click", activate);
+        node.addEventListener('click', activate);
+        chip.addEventListener('click', activate);
         list.appendChild(chip);
       });
-      if (nodes[0]) nodes[0].dispatchEvent(new Event("click"));
+      if(nodes[0]) nodes[0].dispatchEvent(new Event('click'));
+    }
+    document.querySelectorAll('.bp-section').forEach(section => {
+      section.querySelectorAll('.bp-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const key = tab.dataset.tab;
+          section.querySelectorAll('.bp-tab').forEach(t => t.classList.toggle('active', t === tab));
+          section.querySelectorAll('.bp-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.panel === key));
+          refreshInspector(section);
+        });
+      });
+      refreshInspector(section);
     });
   </script>
 </body>

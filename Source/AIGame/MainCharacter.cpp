@@ -1,9 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// 主角模块：实现玩家移动输入与交互输入入口
 
 
 #include "MainCharacter.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "InteractableInterface.h"
 #include "InputAction.h"
 
 void AMainCharacter::BeginPlay()
@@ -34,10 +35,19 @@ void AMainCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		//---绑定输入动作--------------
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainCharacter::Move);
+		if (MoveAction)
+		{
+			EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainCharacter::Move);
+		}
+
+		if (InteractAction)
+		{
+			EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &AMainCharacter::Interact);
+		}
 	}
 }
 
+// 处理玩家移动输入
 void AMainCharacter::Move(const FInputActionValue& Value)
 {
 	FVector2D Direction = Value.Get<FVector2D>();
@@ -60,4 +70,66 @@ void AMainCharacter::Move(const FInputActionValue& Value)
 	CurrentLocation.X = FMath::Clamp(CurrentLocation.X,	-560, 1960);
 	
 	SetActorLocation(CurrentLocation);
+}
+
+// 处理玩家交互输入
+void AMainCharacter::Interact(const FInputActionValue& Value)
+{
+	if (!IsValid(CurrentInteractTarget))
+	{
+		return;
+	}
+
+	if (!CurrentInteractTarget->GetClass()->ImplementsInterface(UInteractableInterface::StaticClass()))
+	{
+		return;
+	}
+
+	if (!IInteractableInterface::Execute_CanInteract(CurrentInteractTarget, this))
+	{
+		return;
+	}
+
+	IInteractableInterface::Execute_Interact(CurrentInteractTarget, this);
+}
+
+// 设置当前可交互目标
+void AMainCharacter::SetCurrentInteractTarget(AActor* TargetActor)
+{
+	if (!IsValid(TargetActor))
+	{
+		return;
+	}
+
+	if (!TargetActor->GetClass()->ImplementsInterface(UInteractableInterface::StaticClass()))
+	{
+		return;
+	}
+
+	CurrentInteractTarget = TargetActor;
+}
+
+// 清除当前可交互目标
+void AMainCharacter::ClearCurrentInteractTarget(AActor* TargetActor)
+{
+	if (CurrentInteractTarget == TargetActor)
+	{
+		CurrentInteractTarget = nullptr;
+	}
+}
+
+// 获取当前交互目标的提示文本
+FText AMainCharacter::GetCurrentInteractPrompt()
+{
+	if (!IsValid(CurrentInteractTarget))
+	{
+		return FText::GetEmpty();
+	}
+
+	if (!CurrentInteractTarget->GetClass()->ImplementsInterface(UInteractableInterface::StaticClass()))
+	{
+		return FText::GetEmpty();
+	}
+
+	return IInteractableInterface::Execute_GetInteractPrompt(CurrentInteractTarget, this);
 }

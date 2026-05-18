@@ -1,6 +1,9 @@
 # Unreal Engine project Git ignore
 # Keep source/config/content/project files; ignore generated local/build artifacts.
 
+# --- Project assets ---
+Content/
+
 # --- IDE / editor local files ---
 .vs/
 .vscode/

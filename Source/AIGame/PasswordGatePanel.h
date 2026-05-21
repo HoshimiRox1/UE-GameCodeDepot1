@@ -26,7 +26,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "密码门")
 	void InitSecurityDoorPanel(AActor* InSourceDoorActor, const TArray<FName>& InRequiredCode);
 
-	// 提交一个按钮 ID，Backspace 和 Confirm 会在 C++ 内部分流
+	// 提交一个按钮 ID，Backspace、Confirm、Reset 会在 C++ 内部分流
 	UFUNCTION(BlueprintCallable, Category = "密码门")
 	void SubmitKey(FName ButtonID);
 

@@ -6,6 +6,8 @@ namespace PasswordGatePanelNames
 {
 	const FName BackspaceKey(TEXT("Backspace"));
 	const FName ConfirmKey(TEXT("Confirm"));
+	const FName ResetKey(TEXT("Reset"));
+	const FName ClearKey(TEXT("Clear"));
 	const FText ReadyStatus = NSLOCTEXT("PasswordGatePanel", "ReadyStatus", "请输入对应代码...");
 	const FText FullStatus = NSLOCTEXT("PasswordGatePanel", "FullStatus", "代码已满");
 	const FText ShortStatus = NSLOCTEXT("PasswordGatePanel", "ShortStatus", "代码长度不足");
@@ -46,6 +48,12 @@ void UPasswordGatePanel::SubmitKey(FName ButtonID)
 	if (ButtonID == PasswordGatePanelNames::ConfirmKey)
 	{
 		SubmitConfirm();
+		return;
+	}
+
+	if (ButtonID == PasswordGatePanelNames::ResetKey || ButtonID == PasswordGatePanelNames::ClearKey)
+	{
+		ResetPasswordGateInput();
 		return;
 	}
 
